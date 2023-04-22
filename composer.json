@@ -1,0 +1,23 @@
+{
+    "name": "dev4b-br/laravel-crud-helper",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Dev4b\\LaravelCrudHelper\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Everton Muniz",
+            "email": "munizeverton@gmail.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dev4b\\LaravelCrudHelper\\LaravelCrudHelperServiceProvider"
+            ]
+        }
+    }
+}
