@@ -18,7 +18,11 @@ abstract class AbstractInput
 
     private ?string $value;
 
-    private $showInputErrorMessages = true;
+    public $showInputErrorMessages = true;
+
+    protected $inputClasses = [];
+
+    protected $containerClasses = [];
 
     public function __construct(string $template, string $name,  ?string $label = null, ?string $value = null, ?string $placeholder = null, string $id = null)
     {
@@ -35,6 +39,16 @@ abstract class AbstractInput
         $this->hint = $hint;
     }
 
+    public function addContainerClass($class)
+    {
+        $this->containerClasses[] = $class;
+    }
+
+    public function addInputClass($class)
+    {
+        $this->inputClasses[] = $class;
+    }
+
     public function render()
     {
         $view = view($this->template);
@@ -44,6 +58,8 @@ abstract class AbstractInput
             ->with('placeholder', $this->placeholder)
             ->with('hint', $this->hint)
             ->with('value', $this->value)
+            ->with('containerClasses', $this->containerClasses)
+            ->with('inputClasses', $this->inputClasses)
             ->with('showInputErrorMessages', $this->showInputErrorMessages);
 
         return $view;
