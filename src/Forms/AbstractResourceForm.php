@@ -29,11 +29,11 @@ abstract class AbstractResourceForm
     public function view(): View
     {
         return view('laravel-crud-helper::form')
+            ->with('parentView', $this->parentView)
             ->with('inputs', $this->inputs)
             ->with('action', $this->getAction())
             ->with('submitText', $this->getSubmitText())
-            ->with('resource', $this->resource)
-            ->with('parentView', $this->parentView);
+            ->with('resource', $this->resource);
     }
 
     public function execute(Request $request)
