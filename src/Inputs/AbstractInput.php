@@ -39,6 +39,11 @@ abstract class AbstractInput
         $this->hint = $hint;
     }
 
+    public function setHalf()
+    {
+        $this->addContainerClass('w-50');
+    }
+
     public function addContainerClass($class)
     {
         $this->containerClasses[] = $class;
