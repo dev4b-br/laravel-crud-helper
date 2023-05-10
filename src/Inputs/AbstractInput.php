@@ -24,7 +24,7 @@ abstract class AbstractInput
 
     protected $containerClasses = [];
 
-    public function __construct(string $template, string $name,  ?string $label = null, ?string $value = null, ?string $placeholder = null, string $id = null)
+    public function __construct(string $template, string $name,  ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null)
     {
         $this->template = $template;
         $this->name = $name;
@@ -57,7 +57,7 @@ abstract class AbstractInput
     public function render()
     {
         $view = view($this->template);
-        $view->with('id', $this->id)
+        $view->with('id', $this->id ?: $this->name)
             ->with('name', $this->name)
             ->with('label', $this->label)
             ->with('placeholder', $this->placeholder)
