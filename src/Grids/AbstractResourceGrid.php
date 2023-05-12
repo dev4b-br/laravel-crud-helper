@@ -1,11 +1,10 @@
 <?php
 
-namespace Dev4b\LaravelCrudHelper\Forms;
+namespace Dev4b\LaravelCrudHelper\Grids;
 
-use Dev4b\LaravelCrudHelper\Forms\Contracts\HasValidation;
-use Dev4b\LaravelCrudHelper\Inputs\AbstractInput;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -15,20 +14,30 @@ abstract class AbstractResourceGrid
 
     private string $parentView;
 
-    public function __construct(Model $resource, $parentView)
+    private Request $request;
+
+    protected array $columns = [];
+
+    public function __construct(Model $resource, $parentView, Request $request)
     {
         $this->resource = $resource;
         $this->parentView = $parentView;
+        $this->request = $request;
+        $this->setup();
+        $this->addColumn(new GridColumn('actions', 'Ações', false, $this->getResourceName()));
     }
 
-    abstract protected function getQueryBuilder();
+    abstract protected function setup();
+
+    abstract protected function getQueryBuilder(): Builder;
 
     public function view(): View
     {
         $data = $this->getQueryBuilder()->get();
         return view('laravel-crud-helper::grid')
             ->with('parentView', $this->parentView)
-            ->with('data', $data);
+            ->with('data', $data)
+            ->with('columns', $this->columns);
     }
 
     public function render(): string
@@ -40,6 +49,14 @@ abstract class AbstractResourceGrid
     {
         $className = explode('\\', get_class($this->resource));
         return Str::lower(end($className));
+    }
+
+    /**
+     * @param array $columns
+     */
+    public function addColumn(GridColumn $column): void
+    {
+        $this->columns[] = $column;
     }
 
     protected function getRouteParams()
