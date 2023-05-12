@@ -1,7 +1,9 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }}">
     <label for="{{ $id }}" class="form-label">{{ $label }}</label>
-    <input type="text" class="form-control @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}" name={{ $name }} id="{{ $id }}" placeholder="{{ $placeholder }}"
-           value="{{ $value }}"/>
+    <input type={{ $type }} class="form-control
+           @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}" name={{ $name }} id="{{ $id }}"
+    placeholder="{{ $placeholder }}"
+    value="{{ $value }}"/>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
     @endif
@@ -14,5 +16,19 @@
             @endforeach
         @endif
     @endif
-
 </div>
+
+@section('laravel-crud-helper-scripts')
+    <script>
+        @if($maskBlocks)
+        $(document).ready(function () {
+            new Cleave("#{{ $id }}", {
+                @if($maskDelimiter) delimiters: ["{!! implode('","', $maskDelimiter) !!}"], @endif
+                blocks: [{{ implode(',',$maskBlocks) }}],
+                @if($isUpperCase) uppercase: true, @endif
+                    @if($isNumericalOnly) numericOnly: true, @endif
+            });
+        })
+        @endif
+    </script>
+@endsection
