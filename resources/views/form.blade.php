@@ -15,9 +15,11 @@
             @method('PATCH')
             <input type="hidden" name="id" value="{{ $resource->getKey() }}">
         @endif
-        @foreach($inputs as $input)
-            {!! $input->render() !!}
-        @endforeach
+        <div class="row">
+            @foreach($inputs as $input)
+                {!! $input->render() !!}
+            @endforeach
+        </div>
 
         <div class="mb-3">
             <button class="btn btn-{{$color ?? 'primary'}} d-grid @if($half ?? false) mx-auto w-50 @else w-100 @endif"

@@ -41,7 +41,7 @@ abstract class AbstractInput
 
     public function setHalf()
     {
-        $this->addContainerClass('w-50');
+        $this->addContainerClass('col-6');
     }
 
     public function addContainerClass($class)
