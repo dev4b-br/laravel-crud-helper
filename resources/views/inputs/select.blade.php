@@ -1,6 +1,8 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }}">
     <label for="{{ $id }}" class="form-label">{{ $label }}</label>
-    <select class="form-select @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}" name={{ $name }} id="{{ $id }}">
+    <select @if($isMultiple) multiple
+            @endif class="form-select select2 @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
+            name="{{ $name }}@if($isMultiple)[]@endif" id="{{ $id }}">
         @foreach($options as $key => $option)
             <option value="{{ $key }}">{{ $option }}</option>
         @endforeach
@@ -18,3 +20,12 @@
         @endif
     @endif
 </div>
+
+@section('laravel-crud-helper-scripts')
+    @parent
+    <script>
+        $(document).ready(function () {
+            $("#{{ $id }}").select2();
+        })
+    </script>
+@endsection
