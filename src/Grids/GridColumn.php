@@ -12,6 +12,7 @@ class GridColumn
     protected bool $isSortable = false;
 
     protected string $head = '';
+
     private $resourceName;
 
     public function __construct($name, $head = '', $isSortable = false, $resourceName = null)
@@ -31,6 +32,36 @@ class GridColumn
         }
 
         return $data[$columnName];
+    }
+
+    public function getSorgingClasses()
+    {
+        if (! $this->isSortable) {
+            return '';
+        }
+
+        $request = request();
+        $direction = '';
+        if (isset($request->order['column']) && $request->order['column'] == $this->name) {
+            $direction = $request->order['direction'] == 'asc' ? 'sorting_asc' : ($request->order['direction'] == 'desc' ? 'sorting_desc' : 'sorting_asc');
+        }
+
+        return "sorting {$direction}";
+    }
+
+    public function getSortUrl()
+    {
+        $request = request();
+        $order['column'] = $this->name;
+        $order['direction'] = 'asc';
+
+        if (isset($request->order['column']) && $request->order['column'] == $this->name) {
+            $order['direction'] = $request->order['direction'] == 'asc' ? 'desc' : ($request->order['direction'] == 'desc' ? 'asc' : 'desc');
+        }
+
+        $orderParam['order'] = $order;
+
+        return '?' . http_build_query(array_merge($request->input(), $orderParam));
     }
 
     /**

@@ -22,8 +22,14 @@ trait ResourceGridController
         throw new \Exception('Not implemented yet');
     }
 
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        throw new \Exception('Not implemented yet');
+        $this->getResource($request)->delete();
+        return redirect($this->getGrid($request)->getRedirectRoute())->with('message', $this->getDeletedMessage());
+    }
+
+    public function getDeletedMessage()
+    {
+        return 'Removido com sucesso';
     }
 }

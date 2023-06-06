@@ -44,6 +44,11 @@ abstract class AbstractInput
         $this->addContainerClass('col-6');
     }
 
+    public function setTriple()
+    {
+        $this->addContainerClass('col-4');
+    }
+
     public function addContainerClass($class)
     {
         $this->containerClasses[] = $class;

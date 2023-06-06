@@ -11,4 +11,9 @@ abstract class AbstractResourceController
 {
     use ResourceFormController, ResourceGridController;
 
+
+    public function getResource(Request $request)
+    {
+        throw new \Exception('Método precisa ser implementado');
+    }
 }

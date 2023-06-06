@@ -21,7 +21,7 @@ trait ResourceFormController
     {
         $form = $this->getForm($request);
         $form->execute($request);
-        return redirect($form->getRedirectRoute())->with('asdasdas');
+        return redirect($form->getRedirectRoute())->with('message', $this->getCreatedMessage());
     }
 
     public function edit(string $id)
@@ -34,6 +34,16 @@ trait ResourceFormController
     {
         $form = $this->getForm($request);
         $form->execute($request);
-        return redirect($form->getRedirectRoute())->with('gggg hhhhh');
+        return redirect($form->getRedirectRoute())->with('message', $this->getUpdatedMessage());
+    }
+
+    public function getCreatedMessage()
+    {
+        return 'Criado com sucesso';
+    }
+
+    public function getUpdatedMessage()
+    {
+        return 'Atualizado com sucesso';
     }
 }
