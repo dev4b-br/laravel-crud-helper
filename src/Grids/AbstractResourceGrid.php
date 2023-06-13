@@ -23,13 +23,15 @@ abstract class AbstractResourceGrid
 
     private array $filters = [];
 
-    public function __construct(Model $resource, $parentView, Request $request)
+    public function __construct(Model $resource, $parentView, Request $request, $actionsColumn = true)
     {
         $this->resource = $resource;
         $this->parentView = $parentView;
         $this->request = $request;
         $this->setup();
-        $this->addColumn(new GridColumn('actions', 'Ações', false, $this->getResourceName()));
+        if ($actionsColumn) {
+            $this->addColumn(new GridColumn('actions', 'Ações', false, $this->getResourceName()));
+        }
     }
 
     protected function applyFilters(Builder $queryBuilder, Request $request): void
