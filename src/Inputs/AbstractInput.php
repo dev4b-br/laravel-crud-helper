@@ -2,7 +2,9 @@
 
 namespace Dev4b\LaravelCrudHelper\Inputs;
 
-abstract class AbstractInput
+use Dev4b\LaravelCrudHelper\Concerns\Block;
+
+abstract class AbstractInput implements Block
 {
     protected $template;
 
