@@ -13,4 +13,9 @@ trait HasWidth
     {
         $this->addContainerClass('col-4');
     }
+
+    public function setQuadruple()
+    {
+        $this->addContainerClass('col-3');
+    }
 }
