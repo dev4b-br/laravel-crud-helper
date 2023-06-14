@@ -51,6 +51,11 @@ abstract class AbstractInput implements Block
         $this->addContainerClass('col-4');
     }
 
+    public function setQuadruple()
+    {
+        $this->addContainerClass('col-3');
+    }
+
     public function addContainerClass($class)
     {
         $this->containerClasses[] = $class;

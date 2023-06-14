@@ -63,6 +63,11 @@ abstract class AbstractResourceForm
         $this->inputs[] = $contentBlock;
     }
 
+    public function addLineBreak()
+    {
+        $this->inputs[] = view('laravel-crud-helper::content-blocks.lineBreak');
+    }
+
     private function getAction(): string
     {
         $resourceName = $this->getResourceName();
