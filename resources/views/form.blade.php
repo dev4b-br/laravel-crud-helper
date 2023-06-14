@@ -1,6 +1,11 @@
 @extends($parentView)
 @section('laravel-crud-helper')
     <div class="card-body">
+        <a href="{{ $gridRoute }}" class="d-flex align-items-center">
+            <span class="mdi mdi-chevron-left mdi-24px"></span>
+            <span>Voltar</span>
+        </a>
+        <br>
         @if($errors->any())
             @foreach($errors->all() as $error)
                 <div class="alert alert-danger" role="alert">
