@@ -4,7 +4,7 @@ namespace Dev4b\LaravelCrudHelper\ContentBlocks;
 
 use Dev4b\LaravelCrudHelper\Concerns\Block;
 
-class FormSection extends Block
+class FormSection implements Content
 {
     protected $template;
 
