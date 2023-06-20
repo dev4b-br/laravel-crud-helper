@@ -14,8 +14,8 @@
                 {!! session()->get('message') !!}
             </div>
         @endif
+        <form method="GET" id="filter-form">
         @if($filters)
-            <form method="GET" id="filter-form">
                 <h5 class="card-title">Filtros</h5>
                 <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                     @foreach($filters as $filter)
