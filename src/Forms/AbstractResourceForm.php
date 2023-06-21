@@ -91,7 +91,7 @@ abstract class AbstractResourceForm
 
     private function isANewResource()
     {
-        return ! $this->resource->exists;
+        return !$this->resource->exists;
     }
 
     protected function getCreateSubmitButtonText()
@@ -107,7 +107,7 @@ abstract class AbstractResourceForm
     private function getResourceName()
     {
         $className = explode('\\', get_class($this->resource));
-        return Str::lower(end($className));
+        return Str::plural(Str::lower(end($className)));
     }
 
     protected function getRouteParams()
