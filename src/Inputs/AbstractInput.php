@@ -2,10 +2,14 @@
 
 namespace Dev4b\LaravelCrudHelper\Inputs;
 
-use Dev4b\LaravelCrudHelper\Concerns\Block;
+use Dev4b\LaravelCrudHelper\Concerns\AbstractBlock;
+use Dev4b\LaravelCrudHelper\Concerns\HasHint;
+use Dev4b\LaravelCrudHelper\Concerns\HasWidth;
 
-abstract class AbstractInput implements Block
+abstract class AbstractInput extends AbstractBlock
 {
+    use HasHint, HasWidth;
+
     protected $template;
 
     protected string $name;
@@ -16,17 +20,13 @@ abstract class AbstractInput implements Block
 
     protected ?string $placeholder;
 
-    protected mixed $hint = null;
-
     private ?string $value;
 
     public $showInputErrorMessages = true;
 
     protected $inputClasses = [];
 
-    protected $containerClasses = [];
-
-    public function __construct(string $template, string $name,  ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null)
+    public function __construct(string $template, string $name, ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null)
     {
         $this->template = $template;
         $this->name = $name;
@@ -34,31 +34,6 @@ abstract class AbstractInput implements Block
         $this->label = $label;
         $this->placeholder = $placeholder;
         $this->id = $id;
-    }
-
-    public function setHint($hint)
-    {
-        $this->hint = $hint;
-    }
-
-    public function setHalf()
-    {
-        $this->addContainerClass('col-6');
-    }
-
-    public function setTriple()
-    {
-        $this->addContainerClass('col-4');
-    }
-
-    public function setQuadruple()
-    {
-        $this->addContainerClass('col-3');
-    }
-
-    public function addContainerClass($class)
-    {
-        $this->containerClasses[] = $class;
     }
 
     public function addInputClass($class)

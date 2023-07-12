@@ -2,7 +2,7 @@
 
 namespace Dev4b\LaravelCrudHelper\Concerns;
 
-interface Block
+interface Content
 {
     public function render();
 }
