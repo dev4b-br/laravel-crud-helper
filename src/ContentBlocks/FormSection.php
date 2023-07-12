@@ -2,7 +2,7 @@
 
 namespace Dev4b\LaravelCrudHelper\ContentBlocks;
 
-use Dev4b\LaravelCrudHelper\Concerns\Block;
+use Dev4b\LaravelCrudHelper\Concerns\Content;
 
 class FormSection implements Content
 {

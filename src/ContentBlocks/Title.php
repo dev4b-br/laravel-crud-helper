@@ -2,9 +2,9 @@
 
 namespace Dev4b\LaravelCrudHelper\ContentBlocks;
 
-use Dev4b\LaravelCrudHelper\Concerns\Block;
+use Dev4b\LaravelCrudHelper\Concerns\Content;
 
-class Title implements Block
+class Title implements Content
 {
     protected $title;
 

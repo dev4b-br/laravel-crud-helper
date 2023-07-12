@@ -2,7 +2,7 @@
 
 namespace Dev4b\LaravelCrudHelper\Forms;
 
-use Dev4b\LaravelCrudHelper\Concerns\AbstractBlock;
+use Dev4b\LaravelCrudHelper\Concerns\Content;
 use Dev4b\LaravelCrudHelper\Forms\Contracts\HasValidation;
 use Dev4b\LaravelCrudHelper\Inputs\AbstractInput;
 use Illuminate\Contracts\View\View;
@@ -60,7 +60,7 @@ abstract class AbstractResourceForm
         $this->inputs[] = $input;
     }
 
-    public function addContentBlock(AbstractBlock $contentBlock)
+    public function addContentBlock(Content $contentBlock)
     {
         $this->inputs[] = $contentBlock;
     }
