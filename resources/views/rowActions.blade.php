@@ -9,8 +9,8 @@
             @csrf
             @method('DELETE')
         </form>
-        <a class="dropdown-item" href="javascript:document.getElementById('{{'form-delete-' . md5($deleteUrl)}}').submit()"><i
+        <a class="dropdown-item" href="javascript:void(0)"
+           onclick="confirmDelete('{{'form-delete-' . md5($deleteUrl)}}')"><i
                 class="mdi mdi-trash-can-outline me-1"></i>Remover</a>
     </div>
 </div>
-

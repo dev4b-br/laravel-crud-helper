@@ -120,3 +120,29 @@
         }
     </style>
 @endsection
+
+@section('laravel-crud-helper-scripts')
+    <script>
+        function confirmDelete(formId) {
+            Swal.fire({
+                title: "Remover registro?",
+                text: "Você não poderá reverter essa ação!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sim, remover!",
+                cancelButtonText: "Cancelar",
+                customClass: {
+                    confirmButton: "btn btn-primary me-1 waves-effect waves-light",
+                    cancelButton: "btn btn-label-secondary waves-effect"
+                },
+                buttonsStyling: false
+            }).then(function (result) {
+                if (result.value) {
+                    $("#" + formId).submit()
+                }
+            });
+        }
+    </script>
+@endsection
