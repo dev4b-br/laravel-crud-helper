@@ -34,7 +34,9 @@ abstract class AbstractResourceForm
             ->with('inputs', $this->inputs)
             ->with('action', $this->getAction())
             ->with('submitText', $this->getSubmitText())
-            ->with('resource', $this->resource);
+            ->with('resource', $this->resource)
+            ->with('gridRoute', $this->getGridRoute());
+
     }
 
     public function execute(Request $request)
@@ -66,6 +68,13 @@ abstract class AbstractResourceForm
     public function addLineBreak()
     {
         $this->inputs[] = view('laravel-crud-helper::content-blocks.lineBreak');
+    }
+
+    public function getGridRoute()
+    {
+        $resourceName = $this->getResourceName();
+
+        return route($resourceName . ".index");
     }
 
     private function getAction(): string
