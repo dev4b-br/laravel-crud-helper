@@ -46,19 +46,31 @@
                         </div>
                     </div>
                     </form>
-                    <div class="col-md-10">
+                    <div class="col-md-10 d-flex align-items-center justify-content-end gap-2">
                         <div
                             class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                             <div class="dt-buttons btn-group flex-wrap">
                                 @if($filters)
                                     <button onclick="document.getElementById('filter-form').submit();"
                                             class="btn btn-secondary btn-primary">
-                                                                <span>
-                                                                    <i class="mdi mdi-search-web me-0 me-sm-1"></i>
-                                                                    <span class="d-none d-sm-inline-block">Buscar</span>
-                                                                </span>
+                                            <span>
+                                                <i class="mdi mdi-search-web me-0 me-sm-1"></i>
+                                                <span class="d-none d-sm-inline-block">Buscar</span>
+                                            </span>
                                     </button>
                                 @endif
+                            </div>
+                        </div>
+                        <div
+                            class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                            <div class="dt-buttons btn-group flex-wrap">
+                                <a href="{{Request::url()}}/create"
+                                   class="btn btn-secondary btn-label-primary">
+                                    <span>
+                                        <i class="mdi mdi-plus me-0 me-sm-1"></i>
+                                        <span class="d-none d-sm-inline-block">Adicionar Registro</span>
+                                    </span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -68,7 +80,8 @@
                     <tr>
                         @foreach($columns as $column)
                             <th @if($column->isSortable())
-                                    class="{{ $column->getSorgingClasses() }}" onclick="window.location = '{{ $column->getSortUrl() }}'"
+                                    class="{{ $column->getSorgingClasses() }}"
+                                onclick="window.location = '{{ $column->getSortUrl() }}'"
                                 @endif
                             >{{ $column->getHead() }}</th>
                         @endforeach
