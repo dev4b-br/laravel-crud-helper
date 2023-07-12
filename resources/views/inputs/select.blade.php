@@ -25,7 +25,9 @@
     @parent
     <script>
         $(document).ready(function () {
-            $("#{{ $id }}").select2();
+            $("#{{ $id }}").select2({
+                language: "pt-BR",
+            });
         })
     </script>
 @endsection
