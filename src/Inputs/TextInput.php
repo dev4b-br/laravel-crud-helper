@@ -39,4 +39,9 @@ class TextInput extends AbstractInput
         $this->maskBlocks = $blocks;
         $this->maskDelimiter = $delimiter;
     }
+
+    public function setIsNumericalOnly(bool $isNumericalOnly)
+    {
+        $this->isNumericalOnly = $isNumericalOnly;
+    }
 }
