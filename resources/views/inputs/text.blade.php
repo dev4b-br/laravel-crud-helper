@@ -2,7 +2,7 @@
     <label for="{{ $id }}" class="form-label">{{ $label }}</label>
     <input type="{{ $type }}" class="form-control
            @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}" name="{{ $name }}"
-           id="{{ $id }}" placeholder="{{ $placeholder }}" value="{{ $value }}"/>
+           id="{{ $id }}" placeholder="{{ $placeholder }}" value="{{ old($oldKey) ?? $value }}"/>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
     @endif
@@ -26,7 +26,7 @@
                 @if($maskDelimiter) delimiters: ["{!! implode('","', $maskDelimiter) !!}"], @endif
                 blocks: [{{ implode(',',$maskBlocks) }}],
                 @if($isNumericalOnly) numericOnly: true, @endif
-                @if($isUpperCase) uppercase: true, @endif
+                    @if($isUpperCase) uppercase: true, @endif
             });
         })
         @endif
