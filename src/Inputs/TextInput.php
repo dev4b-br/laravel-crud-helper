@@ -6,6 +6,8 @@ class TextInput extends AbstractInput
 {
     protected string $type = 'text';
 
+    protected ?string $oldKey = null;
+
     protected array $maskBlocks = [];
 
     protected ?array $maskDelimiter = [];
@@ -16,6 +18,7 @@ class TextInput extends AbstractInput
 
     public function __construct(string $name, ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null)
     {
+        $this->oldKey = $name;
         parent::__construct('laravel-crud-helper::inputs.text', $name, $label, $value, $placeholder, $id);
     }
 
@@ -23,6 +26,7 @@ class TextInput extends AbstractInput
     {
         $view = parent::render();
         $view->with('type', $this->type)
+            ->with('oldKey', $this->oldKey)
             ->with('maskBlocks', $this->maskBlocks)
             ->with('maskDelimiter', $this->maskDelimiter)
             ->with('isNumericalOnly', $this->isNumericalOnly)
@@ -43,5 +47,10 @@ class TextInput extends AbstractInput
     public function setIsNumericalOnly(bool $isNumericalOnly)
     {
         $this->isNumericalOnly = $isNumericalOnly;
+    }
+
+    public function handleOld(bool $useOld, ?string $key)
+    {
+        $this->oldKey = $useOld ? $key : null;
     }
 }
