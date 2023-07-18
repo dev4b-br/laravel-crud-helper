@@ -3,7 +3,7 @@
         aria-expanded="true"
         aria-controls="{{ $id }}">{{ $title }}</h5>
     <div class="collapse show" id="{{ $id }}">
-        <div class="d-flex p-3">
+        <div class="p-3">
             {!! $content->render() !!}
         </div>
     </div>
