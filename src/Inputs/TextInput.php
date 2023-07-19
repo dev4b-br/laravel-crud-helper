@@ -2,11 +2,13 @@
 
 namespace Dev4b\LaravelCrudHelper\Inputs;
 
+use Dev4b\LaravelCrudHelper\Concerns\HasOld;
+
 class TextInput extends AbstractInput
 {
-    protected string $type = 'text';
+    use HasOld;
 
-    protected ?string $oldKey = null;
+    protected string $type = 'text';
 
     protected array $maskBlocks = [];
 
@@ -47,10 +49,5 @@ class TextInput extends AbstractInput
     public function setIsNumericalOnly(bool $isNumericalOnly)
     {
         $this->isNumericalOnly = $isNumericalOnly;
-    }
-
-    public function handleOld(bool $useOld, ?string $key)
-    {
-        $this->oldKey = $useOld ? $key : null;
     }
 }
