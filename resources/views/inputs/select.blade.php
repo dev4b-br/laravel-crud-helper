@@ -4,7 +4,13 @@
             @endif class="form-select select2 @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
             name="{{ $name }}@if($isMultiple)[]@endif" id="{{ $id }}">
         @foreach($options as $key => $option)
-            <option value="{{ $key }}" @if($value == $key) selected @endif>{{ $option }}</option>
+            <option value="{{ $key }}"
+                    @if($isMultiple && in_array($key, old($oldKey))) selected
+                    @elseif(!$isMultiple && old($oldKey) == $key) selected @endif
+                    @if(!old($oldKey) && $value == $key) selected @endif
+            >
+                {{ $option }}
+            </option>
         @endforeach
     </select>
     @if($hint)
