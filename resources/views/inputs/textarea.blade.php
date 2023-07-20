@@ -1,8 +1,7 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }}">
     <label for="{{ $id }}" class="form-label">{{ $label }}</label>
     <textarea class="form-control h-px-100 @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
-              name="{{ $name }}" id="{{ $id }}" placeholder="{{ $placeholder }}"
-              value="{{ $value }}"></textarea>
+              name="{{ $name }}" id="{{ $id }}" placeholder="{{ $placeholder }}">{{ old($oldKey) ?? $value }}</textarea>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
     @endif
