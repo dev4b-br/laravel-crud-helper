@@ -1,4 +1,4 @@
-<div class="mb-3 {{ implode(' ', $containerClasses) }} d-flex align-items-end">
+<div class="mb-3 {{ implode(' ', $containerClasses) }} d-flex align-items-end" id="{{$id}}-container">
     <div class="form-check mb-0">
         <label for="{{ $id }}" class="form-label">{{ $label }}</label>
         <input type="{{ $type }}"

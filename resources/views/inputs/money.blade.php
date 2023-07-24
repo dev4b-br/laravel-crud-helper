@@ -1,4 +1,4 @@
-<div class="mb-3 {{ implode(' ', $containerClasses) }}">
+<div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{$id}}-container">
     <label for="{{ $id }}" class="form-label">{{ $label }}</label>
     <input type="text" class="form-control
            @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}" name="{{ $name }}"

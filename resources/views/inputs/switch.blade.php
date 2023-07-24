@@ -1,4 +1,4 @@
-<div class="mb-3 {{ implode(' ', $containerClasses) }}">
+<div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{$id}}-container">
     <label class="switch">
         <input type="checkbox"
                @if($value) checked @endif

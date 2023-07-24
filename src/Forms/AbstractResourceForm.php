@@ -2,41 +2,29 @@
 
 namespace Dev4b\LaravelCrudHelper\Forms;
 
-use Dev4b\LaravelCrudHelper\Concerns\Content;
 use Dev4b\LaravelCrudHelper\Forms\Contracts\HasValidation;
-use Dev4b\LaravelCrudHelper\Inputs\AbstractInput;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-abstract class AbstractResourceForm
+abstract class AbstractResourceForm extends AbstractForm
 {
     protected Model $resource;
 
-    private array $inputs = [];
-
-    private string $parentView;
-
-    public function __construct(Model $resource, $parentView)
+    public function __construct(Model $resource, ?string $parentView = null)
     {
         $this->resource = $resource;
-        $this->parentView = $parentView;
-        $this->setup();
+        parent::__construct($parentView);
     }
 
     abstract protected function setup();
 
     public function view(): View
     {
-        return view('laravel-crud-helper::form')
-            ->with('parentView', $this->parentView)
-            ->with('inputs', $this->inputs)
-            ->with('action', $this->getAction())
-            ->with('submitText', $this->getSubmitText())
-            ->with('resource', $this->resource)
+        $view = parent::view();
+        return $view->with('resource', $this->resource)
             ->with('gridRoute', $this->getGridRoute());
-
     }
 
     public function execute(Request $request)
@@ -50,26 +38,6 @@ abstract class AbstractResourceForm
         return $this->resource->save();
     }
 
-    public function render(): string
-    {
-        return $this->view()->render();
-    }
-
-    public function addInput(AbstractInput $input)
-    {
-        $this->inputs[] = $input;
-    }
-
-    public function addContentBlock(Content $contentBlock)
-    {
-        $this->inputs[] = $contentBlock;
-    }
-
-    public function addLineBreak()
-    {
-        $this->inputs[] = view('laravel-crud-helper::content-blocks.lineBreak');
-    }
-
     public function getGridRoute()
     {
         $resourceName = $this->getResourceName();
@@ -77,7 +45,7 @@ abstract class AbstractResourceForm
         return route($resourceName . ".index");
     }
 
-    private function getAction(): string
+    protected function getAction(): string
     {
         $resourceName = $this->getResourceName();
         if ($this->isANewResource()) {
@@ -89,7 +57,7 @@ abstract class AbstractResourceForm
         return route($resourceName . ".{$methodName}", $this->getRouteParams());
     }
 
-    private function getSubmitText()
+    protected function getSubmitText()
     {
         if ($this->isANewResource()) {
             return $this->getCreateSubmitButtonText();

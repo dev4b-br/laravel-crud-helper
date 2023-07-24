@@ -1,4 +1,4 @@
-<div class="mb-3 {{ implode(' ', $containerClasses) }}">
+<div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{$id}}-container">
     <label for="{{ $id }}" class="form-label">{{ $label }}</label>
     <div class="input-group input-group-merge">
         <input type="password" class="form-control
