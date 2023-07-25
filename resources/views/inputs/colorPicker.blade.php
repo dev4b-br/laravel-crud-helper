@@ -30,6 +30,16 @@
                     clear: true,
                     save: true
                 }
+            },
+            // Translations
+            i18n: {
+                'ui:dialog': 'diálogo de seletor de cores',
+                'btn:toggle': 'habilita diálogo de seletor de cores',
+                'btn:swatch': 'amostra de cores',
+                'btn:last-color': 'usar cor anterior',
+                'btn:save': 'Salvar',
+                'btn:cancel': 'Cancelar',
+                'btn:clear': 'Limpar',
             }
         });
 
