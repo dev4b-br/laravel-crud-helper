@@ -33,6 +33,7 @@
         $(document).ready(function () {
             $("#{{ $id }}").select2({
                 language: "pt-BR",
+                @if(!$searchBar) minimumResultsForSearch: -1,@endif
             });
         })
     </script>
