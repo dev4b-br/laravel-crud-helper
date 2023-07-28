@@ -32,7 +32,7 @@
                 minimumResultsForSearch: -1,
                 ajax: {
                     type: "POST",
-                    url: "{{route($route)}}",
+                    url: "{{$route}}",
                     dataType: "json",
                     data: function (params) {
                         return {
