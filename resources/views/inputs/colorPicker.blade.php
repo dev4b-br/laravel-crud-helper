@@ -8,6 +8,7 @@
 </div>
 
 @section('laravel-crud-helper-scripts')
+    @parent
     <script>
         var monolithPicker = pickr.create({
             el: "#{{ $id }}-monolith-color-picker",
