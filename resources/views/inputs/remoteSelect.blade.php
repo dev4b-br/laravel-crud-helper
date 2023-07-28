@@ -3,15 +3,9 @@
     <select @if($isMultiple) multiple
             @endif class="form-select select2 @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
             name="{{ $name }}@if($isMultiple)[]@endif" id="{{ $id }}">
-        @foreach($options as $key => $option)
-            <option value="{{ $key }}"
-                    @if($isMultiple && in_array($key, old($oldKey))) selected
-                    @elseif(!$isMultiple && old($oldKey) == $key) selected @endif
-                    @if(!old($oldKey) && $value == $key) selected @endif
-            >
-                {{ $option }}
-            </option>
-        @endforeach
+        @if($defaultOption)
+            <option value="">{{$defaultOption}}</option>
+        @endif
     </select>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
@@ -30,10 +24,28 @@
 @section('laravel-crud-helper-scripts')
     @parent
     <script>
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
         $(document).ready(function () {
             $("#{{ $id }}").select2({
                 language: "pt-BR",
-                @if(!$searchBar) minimumResultsForSearch: -1,@endif
+                minimumResultsForSearch: -1,
+                ajax: {
+                    type: "POST",
+                    url: "{{$route}}",
+                    dataType: "json",
+                    data: function (params) {
+                        return {
+                            _token: CSRF_TOKEN,
+                        };
+                    },
+                    processResults: function (response) {
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true,
+                }
             });
         })
     </script>
