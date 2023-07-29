@@ -4,6 +4,7 @@ namespace Dev4b\LaravelCrudHelper\Forms;
 
 use Dev4b\LaravelCrudHelper\Concerns\Content;
 use Dev4b\LaravelCrudHelper\Inputs\AbstractInput;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -57,7 +58,7 @@ abstract class AbstractForm
         $this->inputs[] = $input;
     }
 
-    public function addContentBlock(Content $contentBlock)
+    public function addContentBlock(Renderable $contentBlock)
     {
         $this->inputs[] = $contentBlock;
     }

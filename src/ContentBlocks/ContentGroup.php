@@ -3,6 +3,7 @@
 namespace Dev4b\LaravelCrudHelper\ContentBlocks;
 
 use Dev4b\LaravelCrudHelper\Concerns\Content;
+use Illuminate\Contracts\Support\Renderable;
 
 class ContentGroup implements Content
 {
@@ -19,7 +20,7 @@ class ContentGroup implements Content
         return $view;
     }
 
-    public function addItem(Content $item)
+    public function addItem(Renderable $item)
     {
         $this->items[] = $item;
     }
