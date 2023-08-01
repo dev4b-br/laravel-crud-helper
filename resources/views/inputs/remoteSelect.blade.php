@@ -1,5 +1,7 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{$id}}-container">
-    <label for="{{ $id }}" class="form-label">{{ $label }}</label>
+    <label for="{{ $id }}" class="form-label">{{ $label }}@if($required)
+            <span class="text-danger">*</span>
+        @endif</label>
     <select @if($isMultiple) multiple
             @endif class="form-select select2 @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
             name="{{ $name }}@if($isMultiple)[]@endif" id="{{ $id }}">
