@@ -26,6 +26,8 @@ abstract class AbstractInput extends AbstractBlock
 
     protected $inputClasses = [];
 
+    protected bool $required = false;
+
     public function __construct(string $template, string $name, ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null)
     {
         $this->template = $template;
@@ -41,6 +43,11 @@ abstract class AbstractInput extends AbstractBlock
         $this->inputClasses[] = $class;
     }
 
+    public function isRequired()
+    {
+        $this->required = true;
+    }
+
     public function render()
     {
         $view = view($this->template);
@@ -52,6 +59,7 @@ abstract class AbstractInput extends AbstractBlock
             ->with('value', $this->value)
             ->with('containerClasses', $this->containerClasses)
             ->with('inputClasses', $this->inputClasses)
+            ->with('required', $this->required)
             ->with('showInputErrorMessages', $this->showInputErrorMessages);
 
         return $view;
