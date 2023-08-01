@@ -1,6 +1,8 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }} d-flex align-items-end" id="{{$id}}-container">
     <div class="form-check mb-0">
-        <label for="{{ $id }}" class="form-label">{{ $label }}</label>
+        <label for="{{ $id }}" class="form-label">{{ $label }}@if($required)
+                <span class="text-danger">*</span>
+            @endif</label>
         <input type="{{ $type }}"
                @if($checked) checked @endif
                class="form-check-input @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
