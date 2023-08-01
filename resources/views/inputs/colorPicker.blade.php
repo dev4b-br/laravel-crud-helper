@@ -1,6 +1,8 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{ $id }}-container">
     <input name="{{ $name }}" id="{{ $id }}" value="{{ $defaultColor }}" type="hidden"/>
-    <label for="{{ $id }}-monolith-color-picker" class="form-label">{{ $label }}</label>
+    <label for="{{ $id }}-monolith-color-picker" class="form-label">{{ $label }}@if($required)
+            <span class="text-danger">*</span>
+        @endif</label>
     <div id="{{ $id }}-monolith-color-picker"></div>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
