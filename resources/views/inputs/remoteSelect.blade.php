@@ -26,7 +26,7 @@
 @section('laravel-crud-helper-scripts')
     @parent
     <script>
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $(document).ready(function () {
             $("#{{ $id }}").select2({
@@ -35,12 +35,11 @@
                 ajax: {
                     type: "POST",
                     url: "{{$route}}",
-                    dataType: "json",
-                    data: function (params) {
-                        return {
-                            _token: CSRF_TOKEN,
-                        };
-                    },
+                    dataType: 'json',
+                    headers: {
+  'X-CSRF-TOKEN': '{!! csrf_token() !!}'
+},
+
                     processResults: function (response) {
                         return {
                             results: response

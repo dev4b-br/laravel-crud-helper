@@ -18,6 +18,7 @@
     }
 </style>
 @section('laravel-crud-helper-scripts')
+    @parent
 <script>
     $(document).ready(function () {
         $('.collapsible-header .mdi').css('transform', 'rotate(180deg');
