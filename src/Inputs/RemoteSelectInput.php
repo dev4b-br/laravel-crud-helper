@@ -14,13 +14,19 @@ class RemoteSelectInput extends AbstractInput
 
     protected ?bool $isMultiple;
 
-    public function __construct(string $name, string $route, ?string $label = null, ?string $defaultOption = null, ?bool $isMultiple = false, ?string $value = null, string $id = null)
+    private $options;
+
+    private ?array $value;
+
+    public function __construct(string $name, string $route, ?string $label = null, ?string $defaultOption = null, ?bool $isMultiple = false, ?array $value = [], string $id = null)
     {
-        parent::__construct('laravel-crud-helper::inputs.remoteSelect', $name, $label, $value, $id);
+        parent::__construct('laravel-crud-helper::inputs.remoteSelect', $name, $label, null, $id);
         $this->route = $route;
         $this->defaultOption = $defaultOption;
         $this->isMultiple = $isMultiple;
         $this->oldKey = $name;
+        $this->value = $value;
+
     }
 
     public function render()
@@ -29,8 +35,15 @@ class RemoteSelectInput extends AbstractInput
         $view->with('route', $this->route)
             ->with('defaultOption', $this->defaultOption)
             ->with('isMultiple', $this->isMultiple)
-            ->with('oldKey', $this->oldKey);
+            ->with('oldKey', $this->oldKey)
+            ->with('options', $this->options)
+            ->with('value', $this->value);
 
         return $view;
+    }
+
+    public function addOptions($options)
+    {
+        $this->options = $options;
     }
 }

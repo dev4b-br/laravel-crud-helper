@@ -8,6 +8,11 @@
         @if($defaultOption)
             <option value="">{{$defaultOption}}</option>
         @endif
+            @if($value)
+                @foreach($options as $key => $option)
+                    <option value="{{ $key }}" @if(in_array($key, $value)) selected @endif>{{ $option }}</option>
+                @endforeach
+            @endif
     </select>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
