@@ -114,4 +114,8 @@ abstract class AbstractForm
         return $this->id ?: Str::slug($this->title);
     }
 
+    public function setParentView(?string $parentView): void
+    {
+        $this->parentView = $parentView;
+    }
 }
