@@ -57,6 +57,11 @@
                         if (!message) {
                             message = 'Registro salvo com sucesso'
                         }
+
+                        if (data.redirect) {
+                            window.location.href = data.redirect
+                        }
+
                         toastr.success(message, toastMessageSettings)
                     },
                     error: function (data) {
