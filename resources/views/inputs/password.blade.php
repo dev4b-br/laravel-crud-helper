@@ -6,8 +6,10 @@
         <input type="password" class="form-control
            @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}" name="{{ $name }}"
                id="{{ $id }}" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" value="{{ $value }}"/>
-        <span class="input-group-text cursor-pointer" id="password-eye"><i
-                class="mdi mdi-eye-off-outline"></i></span>
+        @if($visibilityEye)
+            <span class="input-group-text cursor-pointer" id="password-eye"><i
+                    class="mdi mdi-eye-off-outline"></i></span>
+        @endif
     </div>
 
     @if($hint)
@@ -27,16 +29,18 @@
 @section('laravel-crud-helper-scripts')
     @parent
     <script>
-        $("#password-eye").click(function () {
-            if ($(this).find('i').attr('class') == 'mdi mdi-eye-off-outline') {
-                $(this).find('i').removeClass('mdi-eye-off-outline');
-                $(this).find('i').addClass('mdi-eye-outline');
-                $(this).parent().find('input')[0].type = 'text';
-            } else {
-                $(this).find('i').removeClass('mdi-eye-outline');
-                $(this).find('i').addClass('mdi-eye-off-outline');
-                $(this).parent().find('input')[0].type = 'password';
-            }
-        });
+        @if($visibilityEye)
+            $("#password-eye").click(function () {
+                if ($(this).find('i').attr('class') == 'mdi mdi-eye-off-outline') {
+                    $(this).find('i').removeClass('mdi-eye-off-outline');
+                    $(this).find('i').addClass('mdi-eye-outline');
+                    $(this).parent().find('input')[0].type = 'text';
+                } else {
+                    $(this).find('i').removeClass('mdi-eye-outline');
+                    $(this).find('i').addClass('mdi-eye-off-outline');
+                    $(this).parent().find('input')[0].type = 'password';
+                }
+            });
+        @endif
     </script>
 @endsection

@@ -16,7 +16,8 @@ class PasswordInput extends AbstractInput
     public function render()
     {
         $view = parent::render();
-        $view->with('type', $this->type);
+        $view->with('type', $this->type)
+        ->with('visibilityEye', $this->visibilityEye);
         return $view;
     }
 
