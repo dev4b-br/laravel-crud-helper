@@ -20,7 +20,7 @@ abstract class AbstractInput extends AbstractBlock
 
     protected ?string $placeholder;
 
-    private ?string $value;
+    protected ?string $value;
 
     public $showInputErrorMessages = true;
 
@@ -63,5 +63,10 @@ abstract class AbstractInput extends AbstractBlock
             ->with('showInputErrorMessages', $this->showInputErrorMessages);
 
         return $view;
+    }
+
+    public function setValue(?string $value): void
+    {
+        $this->value = $value;
     }
 }
