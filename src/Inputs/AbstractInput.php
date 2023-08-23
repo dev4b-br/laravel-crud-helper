@@ -20,7 +20,7 @@ abstract class AbstractInput extends AbstractBlock
 
     protected ?string $placeholder;
 
-    protected ?string $value;
+    private ?string $value;
 
     public $showInputErrorMessages = true;
 
