@@ -39,6 +39,7 @@
                 minimumResultsForSearch: 0,
                 ajax: {
                     @if($maximumSelectionLength) maximumSelectionLength: {{ $maximumSelectionLength }}, @endif
+@if($minimumInputLength) minimumInputLength: {{ $minimumInputLength }}, @endif
                     type: "POST",
                     url: "{{$route}}",
                     dataType: 'json',
