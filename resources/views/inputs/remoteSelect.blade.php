@@ -8,11 +8,11 @@
         @if($defaultOption)
             <option value="">{{$defaultOption}}</option>
         @endif
-            @if($value)
-                @foreach($options as $key => $option)
-                    <option value="{{ $key }}" @if(in_array($key, $value)) selected @endif>{{ $option }}</option>
-                @endforeach
-            @endif
+        @if($value)
+            @foreach($options as $key => $option)
+                <option value="{{ $key }}" @if(in_array($key, $value)) selected @endif>{{ $option }}</option>
+            @endforeach
+        @endif
     </select>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
@@ -31,13 +31,14 @@
 @section('laravel-crud-helper-scripts')
     @parent
     <script>
-         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $(document).ready(function () {
             $("#{{ $id }}").select2({
                 language: "pt-BR",
-                minimumResultsForSearch: -1,
+                minimumResultsForSearch: 0,
                 ajax: {
+                    @if($maximumSelectionLength) maximumSelectionLength: {{ $maximumSelectionLength }}, @endif
                     type: "POST",
                     url: "{{$route}}",
                     dataType: 'json',

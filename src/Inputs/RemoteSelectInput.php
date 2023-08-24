@@ -18,6 +18,8 @@ class RemoteSelectInput extends AbstractInput
 
     private ?array $value;
 
+    private $maximumSelectionLength;
+
     public function __construct(string $name, string $route, ?string $label = null, ?string $defaultOption = null, ?bool $isMultiple = false, ?array $value = [], string $id = null)
     {
         parent::__construct('laravel-crud-helper::inputs.remoteSelect', $name, $label, null, $id);
@@ -26,7 +28,6 @@ class RemoteSelectInput extends AbstractInput
         $this->isMultiple = $isMultiple;
         $this->oldKey = $name;
         $this->value = $value;
-
     }
 
     public function render()
@@ -37,7 +38,8 @@ class RemoteSelectInput extends AbstractInput
             ->with('isMultiple', $this->isMultiple)
             ->with('oldKey', $this->oldKey)
             ->with('options', $this->options)
-            ->with('value', $this->value);
+            ->with('value', $this->value)
+            ->with('maximumSelectionLength', $this->maximumSelectionLength);
 
         return $view;
     }
@@ -45,5 +47,13 @@ class RemoteSelectInput extends AbstractInput
     public function addOptions($options)
     {
         $this->options = $options;
+    }
+
+    /**
+     * @param mixed $maximumSelectionLength
+     */
+    public function setMaximumSelectionLength(int $maximumSelectionLength): void
+    {
+        $this->maximumSelectionLength = $maximumSelectionLength;
     }
 }
