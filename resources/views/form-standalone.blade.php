@@ -1,5 +1,5 @@
 <div class="card-body">
-    <form action="{{ $action }}" method="post" id="{{$formId}}">
+    <form action="{{ $action }}" method="post" id="{{$formId}}" enctype="{{$enctype}}">
         @isset($gridRoute)
             <a href="{{ $gridRoute }}" class="d-flex align-items-center">
                 <span class="mdi mdi-chevron-left mdi-24px"></span>

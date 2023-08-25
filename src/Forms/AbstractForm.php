@@ -21,6 +21,8 @@ abstract class AbstractForm
 
     protected bool $isAjax = false;
 
+    protected string $enctype;
+
     public function __construct(?string $parentView = null)
     {
         $this->parentView = $parentView;
@@ -43,7 +45,8 @@ abstract class AbstractForm
             ->with('action', $this->getAction())
             ->with('submitText', $this->getSubmitText())
             ->with('isAjax', $this->isAjax)
-            ->with('formId', uniqid('form-'));
+            ->with('formId', uniqid('form-'))
+            ->with('enctype', $this->enctype);
     }
 
     abstract public function execute(Request $request);
