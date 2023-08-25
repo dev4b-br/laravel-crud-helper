@@ -1,4 +1,3 @@
-
 <div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{$id}}-container">
     <label for="{{ $id }}" class="form-label">{{ $label }}@if($required)
             <span class="text-danger">*</span>
@@ -7,10 +6,17 @@
         @foreach($files as $file)
             <div class="file">
                 <input type="hidden" name="{{ $name }}[]" value="{{ $file->id }}">
-                <a href="{{ $file->url }}" target="_blank"><img src="{{ $file->url }}" width="10%"></a>
-                <a href="{{ $deleteFileRoute }}/{{ $file->id }}" class="remove-file" data-id="{{ $file->id }}"><i
-                        class="fas fa-trash"></i></a>
-            </div><br>
+                    <div>
+                        <a href="{{route('show-foto', [$file->id])}}" target="_blank">
+                            <img src="{{ $file->url }}" style="object-fit: cover; height: 150px; width: 150px; margin: 0 auto; margin-bottom: 14px; border: 1px solid gray; border-radius: 4px">
+                        </a>
+
+                        <a onclick="return confirm('Tem certeza que deseja excluir esse arquivo?')" href="{{ $deleteFileRoute }}/{{ $file->id }}" class="remove-file" data-id="{{ $file->id }}"><i
+                                class="fas fa-trash"></i></a>
+                    </div>
+                </div>
+            </div>
+            <br>
         @endforeach
     </div>
     <br>
