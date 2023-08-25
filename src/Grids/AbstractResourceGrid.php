@@ -18,13 +18,17 @@ abstract class AbstractResourceGrid
 
     private string $parentView;
 
+    protected string $exportView;
+
     protected Request $request;
 
     protected array $columns = [];
 
     private array $filters = [];
 
-    protected bool $hasExport = true;
+    protected bool $exportCsv = true;
+
+    protected bool $exportPdf = true;
 
     public function __construct(Model $resource, $parentView, Request $request, $actionsColumn = true)
     {
@@ -57,7 +61,8 @@ abstract class AbstractResourceGrid
             ->with('parentView', $this->parentView)
             ->with('data', $data)
             ->with('columns', $this->columns)
-            ->with('hasExport', $this->hasExport)
+            ->with('exportCsv', $this->exportCsv)
+            ->with('exportPdf', $this->exportPdf)
             ->with('limit', $this->getLimit());
     }
 
@@ -95,12 +100,14 @@ abstract class AbstractResourceGrid
         $this->filters[] = $input;
     }
 
-    /**
-     * @param bool $hasExport
-     */
-    public function setHasExport(bool $hasExport): void
+    public function disableExportCsv(): void
     {
-        $this->hasExport = $hasExport;
+        $this->exportCsv = false;
+    }
+
+    public function disableExportPdf(): void
+    {
+        $this->exportPdf = false;
     }
 
     public function export(string $type)
@@ -110,37 +117,64 @@ abstract class AbstractResourceGrid
         $data = $queryBuilder->get();
 
         if ($type == 'csv') {
-            $fileName = $this->getResourceName() . '.csv';
-            $headers = ['Content-Type' => 'text/csv'];
-
-            $handle = fopen($fileName, 'w+');
-
-            $array = array();
-            foreach ($data as $row) {
-                $string = '';
-                foreach ($this->columns as $column) {
-                    $array[0] = $array[0] + $column->getName().',';
-                    $string = $string.$row[$column->getName()].',';
-                    dd($array);
-                }
-            }
-            foreach ($data as $row) {
-                fputcsv($handle, $row->toArray());
-            }
-
-            fclose($handle);
-
-            return response()->download($fileName, $fileName, $headers);
+            return $this->exportCsv($data);
         }
 
         if ($type == 'pdf') {
-            $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('laravel-crud-helper::export-table', $data);
-
-            return $pdf->stream();
+            return $this->exportPdf($data);
         }
 
         return null;
+    }
+
+    public function exportCsv($data)
+    {
+        $fileName = $this->getResourceName() . '.csv';
+        $headers = ['Content-Type' => 'text/csv'];
+
+        $handle = fopen($fileName, 'w+');
+
+        $csvData = [];
+        $columnsArray = [];
+        foreach ($this->columns as $column) {
+            if ($column->getName() == 'actions') {
+                continue;
+            }
+            $columnsArray[] = $column->getHead();
+        }
+        $csvData[] = implode(',', $columnsArray);
+
+        foreach ($data as $item) {
+            $itemsArray = [];
+            foreach ($this->columns as $column) {
+                if ($column->getName() == 'actions') {
+                    continue;
+                }
+                $itemsArray[] = "'" . $column->getData($column->getName(), $item) . "'";
+            }
+            $csvData[] = implode(',', $itemsArray);
+        }
+
+        foreach ($csvData as $row) {
+            fputcsv($handle, [$row]);
+        }
+
+        fclose($handle);
+
+        return response()->download($fileName, $fileName, $headers);
+    }
+
+    public function exportPdf($data)
+    {
+        $pdf = App::make('dompdf.wrapper');
+        $pdfData = [
+            'items' => $data,
+            'columns' => $this->columns,
+            'exportView' => $this->exportView,
+        ];
+        $pdf->loadView('laravel-crud-helper::export-table', $pdfData);
+
+        return $pdf->stream();
     }
 
     private function getLimit()
