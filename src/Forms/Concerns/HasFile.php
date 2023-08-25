@@ -11,7 +11,7 @@ trait HasFile
         foreach ($files as $file) {
             $fileName = time() . '_' . $file->getClientOriginalName();
             $path = $file->storeAs('files', $fileName, 'public');
-            $url = storage_path($path);
+            $url = "/storage/{$path}";
 
             $model->files()->create([
                 'url' => $url,

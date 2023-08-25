@@ -3,7 +3,19 @@
     <label for="{{ $id }}" class="form-label">{{ $label }}@if($required)
             <span class="text-danger">*</span>
         @endif</label>
-    <input type="file" @if($isMultiple) multiple @endif class="form-control @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
+    <div id="files">
+        @foreach($files as $file)
+            <div class="file">
+                <input type="hidden" name="{{ $name }}[]" value="{{ $file->id }}">
+                <a href="{{ $file->url }}" target="_blank"><img src="{{ $file->url }}" width="10%"></a>
+                <a href="{{ $deleteFileRoute }}/{{ $file->id }}" class="remove-file" data-id="{{ $file->id }}"><i
+                        class="fas fa-trash"></i></a>
+            </div><br>
+        @endforeach
+    </div>
+    <br>
+    <input type="file" @if($isMultiple) multiple
+           @endif class="form-control @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
            name="{{ $name }}@if($isMultiple)[]@endif" id="{{ $id }}" placeholder="{{ $placeholder }}"/>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
