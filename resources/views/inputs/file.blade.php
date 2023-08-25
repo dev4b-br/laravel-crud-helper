@@ -7,7 +7,7 @@
             <div class="file">
                 <input type="hidden" name="{{ $name }}[]" value="{{ $file->id }}">
                     <div>
-                        <a href="{{route('show-foto', [$file->id])}}" target="_blank">
+                        <a href="{{route('show-file', [$file->id])}}" target="_blank">
                             <img src="{{ $file->url }}" style="object-fit: cover; height: 150px; width: 150px; margin: 0 auto; margin-bottom: 14px; border: 1px solid gray; border-radius: 4px">
                         </a>
 
