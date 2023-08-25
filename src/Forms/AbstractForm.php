@@ -22,7 +22,7 @@ abstract class AbstractForm
     protected bool $isAjax = false;
 
     protected ?string $enctype = null;
-
+    
     protected string $callbackUrl;
 
     public function __construct(?string $parentView = null)
