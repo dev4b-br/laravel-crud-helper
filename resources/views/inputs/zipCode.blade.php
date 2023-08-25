@@ -19,6 +19,8 @@
                         document.querySelector('input[name={{$neighborhoodInputName}}]').value = json.bairro;
                         document.querySelector('input[name={{$cityInputName}}]').value = json.localidade;
                         document.querySelector('input[name={{$stateInputName}}]').value = json.uf;
+                        document.querySelector('input[name={{$countryInputName}}]').value = 'Brasil';
+
                     }
 
 
