@@ -52,7 +52,7 @@
                             <div class="dt-buttons btn-group flex-wrap">
                                 @if($filters)
                                     <button onclick="document.getElementById('filter-form').submit();"
-                                            class="btn btn-secondary btn-primary">
+                                            class="btn btn-primary">
                                             <span>
                                                 <i class="mdi mdi-search-web me-0 me-sm-1"></i>
                                                 <span class="d-none d-sm-inline-block">Buscar</span>
@@ -65,12 +65,30 @@
                             class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                             <div class="dt-buttons btn-group flex-wrap">
                                 <a href="{{Request::url()}}/create"
-                                   class="btn btn-secondary btn-label-primary">
+                                   class="btn btn-label-primary">
                                     <span>
                                         <i class="mdi mdi-plus me-0 me-sm-1"></i>
                                         <span class="d-none d-sm-inline-block">Adicionar Registro</span>
                                     </span>
                                 </a>
+                            </div>
+                        </div>
+                        <div
+                            class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                            <div class="dt-buttons btn-group flex-wrap">
+                                <button class="btn btn-label-warning dropdown-toggle" id="dropdownExportButton"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span>
+                                        <i class="mdi mdi-table-arrow-right me-0 me-sm-1"></i>
+                                        <span class="d-none d-sm-inline-block">Exportar</span>
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownExportButton">
+                                    <li><a class="dropdown-item d-flex align-items-center"
+                                           href="{{Request::url()}}/export/csv" target="_blank">CSV</a></li>
+                                    <li><a class="dropdown-item d-flex align-items-center"
+                                           href="{{Request::url()}}/export/pdf" target="_blank">PDF</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
