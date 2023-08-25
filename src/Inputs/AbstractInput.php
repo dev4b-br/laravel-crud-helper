@@ -64,4 +64,9 @@ abstract class AbstractInput extends AbstractBlock
 
         return $view;
     }
+
+    public function setValue(?string $value): void
+    {
+        $this->value = $value;
+    }
 }
