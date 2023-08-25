@@ -20,9 +20,9 @@ abstract class AbstractForm
     protected string $id;
 
     protected bool $isAjax = false;
-
-    protected ?string $enctype = null;
     
+    protected ?string $enctype = null;
+
     protected string $callbackUrl;
 
     public function __construct(?string $parentView = null)
