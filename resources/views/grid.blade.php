@@ -73,7 +73,7 @@
                                 </a>
                             </div>
                         </div>
-                        @if($hasExport)
+                        @if($exportCsv || $exportPdf)
                             <div
                                 class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                                 <div class="dt-buttons btn-group flex-wrap">
@@ -85,10 +85,18 @@
                                     </span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownExportButton">
-                                        <li><a class="dropdown-item d-flex align-items-center"
-                                               href="{{Request::url()}}/export/csv" target="_blank">CSV</a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center"
-                                               href="{{Request::url()}}/export/pdf" target="_blank">PDF</a></li>
+                                        @if($exportCsv)
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center"
+                                                   href="{{Request::url()}}/export/csv" target="_blank">CSV</a>
+                                            </li>
+                                        @endif
+                                        @if($exportPdf)
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center"
+                                                   href="{{Request::url()}}/export/pdf" target="_blank">PDF</a>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
