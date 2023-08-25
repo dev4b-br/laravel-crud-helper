@@ -18,9 +18,7 @@
                     @if($column->getName() == 'actions')
                         @continue
                     @endif
-                    <td>
-                        <h6>{{$column->getData($column->getName(), $item)}}</h6>
-                    </td>
+                    <td>{{$column->getData($column->getName(), $item)}}</td>
                 @endforeach
             </tr>
         @endforeach
