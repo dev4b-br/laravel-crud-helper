@@ -23,6 +23,8 @@ abstract class AbstractForm
 
     protected ?string $enctype = null;
 
+    protected string $callbackUrl;
+
     public function __construct(?string $parentView = null)
     {
         $this->parentView = $parentView;
@@ -46,7 +48,8 @@ abstract class AbstractForm
             ->with('submitText', $this->getSubmitText())
             ->with('isAjax', $this->isAjax)
             ->with('formId', uniqid('form-'))
-            ->with('enctype', $this->enctype);
+            ->with('enctype', $this->enctype)
+            ->with('callbackUrl', $this->callbackUrl);
     }
 
     abstract public function execute(Request $request);
@@ -120,5 +123,10 @@ abstract class AbstractForm
     public function setParentView(?string $parentView): void
     {
         $this->parentView = $parentView;
+    }
+
+    public function setCallbackUrl(string $callbackUrl): void
+    {
+        $this->callbackUrl = $callbackUrl;
     }
 }
