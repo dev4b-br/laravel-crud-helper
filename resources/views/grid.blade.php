@@ -15,7 +15,7 @@
             </div>
         @endif
         <form method="GET" id="filter-form">
-        @if($filters)
+            @if($filters)
                 <h5 class="card-title">Filtros</h5>
                 <div class="d-flex align-items-center row py-3 gap-3 gap-md-0">
                     @foreach($filters as $filter)
@@ -73,24 +73,26 @@
                                 </a>
                             </div>
                         </div>
-                        <div
-                            class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
-                            <div class="dt-buttons btn-group flex-wrap">
-                                <button class="btn btn-label-warning dropdown-toggle" id="dropdownExportButton"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @if($hasExport)
+                            <div
+                                class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                                <div class="dt-buttons btn-group flex-wrap">
+                                    <button class="btn btn-label-warning dropdown-toggle" id="dropdownExportButton"
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span>
                                         <i class="mdi mdi-table-arrow-right me-0 me-sm-1"></i>
                                         <span class="d-none d-sm-inline-block">Exportar</span>
                                     </span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownExportButton">
-                                    <li><a class="dropdown-item d-flex align-items-center"
-                                           href="{{Request::url()}}/export/csv" target="_blank">CSV</a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center"
-                                           href="{{Request::url()}}/export/pdf" target="_blank">PDF</a></li>
-                                </ul>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownExportButton">
+                                        <li><a class="dropdown-item d-flex align-items-center"
+                                               href="{{Request::url()}}/export/csv" target="_blank">CSV</a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center"
+                                               href="{{Request::url()}}/export/pdf" target="_blank">PDF</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <table class="table table-striped dataTable">
