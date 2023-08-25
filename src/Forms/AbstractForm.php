@@ -21,7 +21,7 @@ abstract class AbstractForm
 
     protected bool $isAjax = false;
 
-    protected string $enctype;
+    protected ?string $enctype = null;
 
     public function __construct(?string $parentView = null)
     {
