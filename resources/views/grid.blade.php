@@ -51,7 +51,7 @@
                             class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                             <div class="dt-buttons btn-group flex-wrap">
                                 @if($filters)
-                                    <button onclick="document.getElementById('filter-form').submit();"
+                                    <button onclick="submitHandler('{{Request::url()}}', 'GET', false)"
                                             class="btn btn-primary">
                                             <span>
                                                 <i class="mdi mdi-search-web me-0 me-sm-1"></i>
@@ -88,13 +88,15 @@
                                         @if($exportCsv)
                                             <li>
                                                 <a class="dropdown-item d-flex align-items-center"
-                                                   href="{{Request::url()}}/export/csv" target="_blank">CSV</a>
+                                                   onclick="submitHandler('{{Request::url()}}/export/csv', 'GET', false)"
+                                                   target="_blank">CSV</a>
                                             </li>
                                         @endif
                                         @if($exportPdf)
                                             <li>
                                                 <a class="dropdown-item d-flex align-items-center"
-                                                   href="{{Request::url()}}/export/pdf" target="_blank">PDF</a>
+                                                   onclick="submitHandler('{{Request::url()}}/export/pdf', 'GET', true)"
+                                                   target="_blank">PDF</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -171,6 +173,16 @@
                     $("#" + formId).submit()
                 }
             });
+        }
+
+        function submitHandler(action, method, onTargetBlank = false) {
+            filterForm = $('#filter-form');
+
+            filterForm.attr('action', action);
+            filterForm.attr('method', method);
+            onTargetBlank && filterForm.attr('target', '_blank');
+
+            filterForm.submit();
         }
     </script>
 @endsection
