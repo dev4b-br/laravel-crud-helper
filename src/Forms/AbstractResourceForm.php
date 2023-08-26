@@ -38,6 +38,21 @@ abstract class AbstractResourceForm extends AbstractForm
         return $this->resource->save();
     }
 
+    public function changeFieldCallback(Request $request)
+    {
+        $response = [];
+        parse_str($request->get('formData'), $formData);
+
+        foreach($request->get('refreshList') as $fieldId) {
+            $response[] = [
+                'id' => $fieldId,
+                'html' => $this->renderElement($fieldId, $formData),
+            ];
+        }
+
+        return $response;
+    }
+
     public function getGridRoute()
     {
         $resourceName = $this->getResourceName();
@@ -95,5 +110,10 @@ abstract class AbstractResourceForm extends AbstractForm
     public function getRedirectRoute()
     {
         return route($this->getResourceName() . '.index');
+    }
+
+    protected function renderElement(string $fieldId, array $formData): string
+    {
+        throw new \Exception('You must implement renderElement method');
     }
 }

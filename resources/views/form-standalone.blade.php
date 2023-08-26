@@ -40,43 +40,69 @@
 
 @section('laravel-crud-helper-scripts')
     @parent
+    <script>
+        @if($inputsWithRefreshList)
+        @foreach($inputsWithRefreshList as $inputWithRefreshList)
+        $('#{!! $inputWithRefreshList->getId() !!}').on('change', function () {
+            let data = {
+                _token: '{{ @csrf_token() }}',
+                formData: $('#{{$formId}}').serialize(),
+                refreshList:   ['{!! implode("','", $inputWithRefreshList->getRefreshList()) !!}']
+            }
+            $.ajax({
+                type: 'POST',
+                data: data,
+                url:  '{{ $changeFieldCallbackUrl }}',
+                success: function (data) {
+                    handleRefreshData(data)
+                },
+            });
+        });
+        @endforeach
+            function handleRefreshData(data) {
+                $(data).each(function (index, item) {
+                    let inputContainer = $('#'+item.id +  '-container')
+                    inputContainer.replaceWith(item.html)
+                })
+            }
+        @endif
+        @if($isAjax)
 
-    @if($isAjax)
-        <script>
-            $('#{{$formId}}').on('submit', function (event) {
-                event.preventDefault();
-                $('#{{$formId}}').find('#errors-container').html('')
-                $('#{{$formId}}').find(':input').removeClass('is-invalid')
-                $('#{{$formId}}').find(':input').parent().find('.invalid-feedback').remove()
-                $.ajax({
-                    type: 'POST',
-                    data: $('#{{$formId}}').serialize(),
-                    url: $('#{{$formId}}').attr('action'),
-                    success: function (data) {
-                        let message = data.message
-                        if (!message) {
-                            message = 'Registro salvo com sucesso'
-                        }
-
-                        if (data.redirect) {
-                            window.location.href = data.redirect
-                        }
-
-                        toastr.success(message, toastMessageSettings)
-                    },
-                    error: function (data) {
-                        if (data.status === 422) {
-                            var jsonData = $.parseJSON(data.responseText);
-                            var errors = jsonData.errors
-                            $.each(errors, function (key, val) {
-                                $('#{{$formId}}').find('#errors-container').append(`<div class="alert alert-danger" role="alert">${val}</div>`);
-                                $('#{{$formId}}').find(`#${key}-container`).append(`<div class="invalid-feedback">${val}</div>`);
-                                $('#{{$formId}}').find(`#${key}-container`).find(':input').addClass('is-invalid')
-                            });
-                        }
+        $('#{{$formId}}').on('submit', function (event) {
+            event.preventDefault();
+            $('#{{$formId}}').find('#errors-container').html('')
+            $('#{{$formId}}').find(':input').removeClass('is-invalid')
+            $('#{{$formId}}').find(':input').parent().find('.invalid-feedback').remove()
+            $.ajax({
+                type: 'POST',
+                data: $('#{{$formId}}').serialize(),
+                url: $('#{{$formId}}').attr('action'),
+                success: function (data) {
+                    let message = data.message
+                    if (!message) {
+                        message = 'Registro salvo com sucesso'
                     }
-                });
-            })
-        </script>
-    @endif
+
+                    if (data.redirect) {
+                        window.location.href = data.redirect
+                    }
+
+                    toastr.success(message, toastMessageSettings)
+                },
+                error: function (data) {
+                    if (data.status === 422) {
+                        var jsonData = $.parseJSON(data.responseText);
+                        var errors = jsonData.errors
+                        $.each(errors, function (key, val) {
+                            $('#{{$formId}}').find('#errors-container').append(`<div class="alert alert-danger" role="alert">${val}</div>`);
+                            $('#{{$formId}}').find(`#${key}-container`).append(`<div class="invalid-feedback">${val}</div>`);
+                            $('#{{$formId}}').find(`#${key}-container`).find(':input').addClass('is-invalid')
+                        });
+                    }
+                }
+            });
+        })
+
+        @endif
+    </script>
 @endsection

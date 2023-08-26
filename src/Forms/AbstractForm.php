@@ -20,10 +20,10 @@ abstract class AbstractForm
     protected string $id;
 
     protected bool $isAjax = false;
-    
+
     protected ?string $enctype = null;
 
-    protected string $callbackUrl;
+    protected string $changeFieldCallbackUrl;
 
     public function __construct(?string $parentView = null)
     {
@@ -49,7 +49,8 @@ abstract class AbstractForm
             ->with('isAjax', $this->isAjax)
             ->with('formId', uniqid('form-'))
             ->with('enctype', $this->enctype)
-            ->with('callbackUrl', $this->callbackUrl);
+            ->with('changeFieldCallbackUrl', $this->changeFieldCallbackUrl)
+            ->with('inputsWithRefreshList', $this->getInputsWithRefreshList());
     }
 
     abstract public function execute(Request $request);
@@ -125,8 +126,20 @@ abstract class AbstractForm
         $this->parentView = $parentView;
     }
 
-    public function setCallbackUrl(string $callbackUrl): void
+    public function setCallbackUrl(string $changeFieldCallbackUrl): void
     {
-        $this->callbackUrl = $callbackUrl;
+        $this->changeFieldCallbackUrl = $changeFieldCallbackUrl;
+    }
+
+    private function getInputsWithRefreshList()
+    {
+        $inputs = [];
+        foreach ($this->inputs as $input) {
+            if ($input instanceof AbstractInput && $input->getRefreshList()) {
+                $inputs[] = $input;
+            }
+        }
+
+        return $inputs;
     }
 }

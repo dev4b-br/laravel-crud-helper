@@ -28,6 +28,8 @@ abstract class AbstractInput extends AbstractBlock
 
     protected bool $required = false;
 
+    protected $refreshList = [];
+
     public function __construct(string $template, string $name, ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null)
     {
         $this->template = $template;
@@ -35,7 +37,7 @@ abstract class AbstractInput extends AbstractBlock
         $this->value = $value;
         $this->label = $label;
         $this->placeholder = $placeholder;
-        $this->id = $id;
+        $this->id = $id ?: $this->name;
     }
 
     public function addInputClass($class)
@@ -60,7 +62,8 @@ abstract class AbstractInput extends AbstractBlock
             ->with('containerClasses', $this->containerClasses)
             ->with('inputClasses', $this->inputClasses)
             ->with('required', $this->required)
-            ->with('showInputErrorMessages', $this->showInputErrorMessages);
+            ->with('showInputErrorMessages', $this->showInputErrorMessages)
+            ->with('refreshList', $this->refreshList);
 
         return $view;
     }
@@ -68,5 +71,20 @@ abstract class AbstractInput extends AbstractBlock
     public function setValue(?string $value): void
     {
         $this->value = $value;
+    }
+
+    public function setRefreshList(array $refreshList): void
+    {
+        $this->refreshList = $refreshList;
+    }
+
+    public function getRefreshList(): array
+    {
+        return $this->refreshList;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

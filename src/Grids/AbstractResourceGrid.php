@@ -17,6 +17,8 @@ abstract class AbstractResourceGrid
 
     private string $parentView;
 
+    protected string $reportView;
+
     protected Request $request;
 
     protected array $columns = [];
