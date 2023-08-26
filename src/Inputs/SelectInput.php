@@ -37,4 +37,9 @@ class SelectInput extends AbstractInput
     {
         $this->searchBar = false;
     }
+
+    public function setOptions(?array $options): void
+    {
+        $this->options = $options;
+    }
 }

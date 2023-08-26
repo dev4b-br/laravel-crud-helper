@@ -23,7 +23,7 @@ abstract class AbstractForm
 
     protected ?string $enctype = null;
 
-    protected string $changeFieldCallbackUrl;
+    protected ?string $changeFieldCallbackUrl = null;
 
     public function __construct(?string $parentView = null)
     {

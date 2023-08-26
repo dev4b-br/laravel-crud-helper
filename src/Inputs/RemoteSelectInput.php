@@ -22,6 +22,8 @@ class RemoteSelectInput extends AbstractInput
 
     private $minimumInputLength;
 
+    private $allowCreateItem = false;
+
     public function __construct(string $name, string $route, ?string $label = null, ?string $defaultOption = null, ?bool $isMultiple = false, ?array $value = [], string $id = null)
     {
         parent::__construct('laravel-crud-helper::inputs.remoteSelect', $name, $label, null, $id);
@@ -42,7 +44,8 @@ class RemoteSelectInput extends AbstractInput
             ->with('options', $this->options)
             ->with('value', $this->value)
             ->with('maximumSelectionLength', $this->maximumSelectionLength)
-            ->with('minimumInputLength', $this->minimumInputLength);
+            ->with('minimumInputLength', $this->minimumInputLength)
+            ->with('allowCreateItem', $this->allowCreateItem);
 
         return $view;
     }
@@ -66,5 +69,10 @@ class RemoteSelectInput extends AbstractInput
     public function setMinimumInputLength(int $minimumInputLength): void
     {
         $this->minimumInputLength = $minimumInputLength;
+    }
+
+    public function setAllowCreateItem(bool $allowCreateItem): void
+    {
+        $this->allowCreateItem = $allowCreateItem;
     }
 }

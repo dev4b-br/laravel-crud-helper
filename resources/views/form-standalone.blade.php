@@ -44,10 +44,16 @@
         @if($inputsWithRefreshList)
         @foreach($inputsWithRefreshList as $inputWithRefreshList)
         $('#{!! $inputWithRefreshList->getId() !!}').on('change', function () {
-            let data = {
+            handleChangeFieldCallback(['{!! implode("','", $inputWithRefreshList->getRefreshList()) !!}'])
+        });
+        @endforeach
+        @endif
+
+        function handleChangeFieldCallback(refreshList) {
+               let data = {
                 _token: '{{ @csrf_token() }}',
                 formData: $('#{{$formId}}').serialize(),
-                refreshList:   ['{!! implode("','", $inputWithRefreshList->getRefreshList()) !!}']
+                refreshList:     refreshList,
             }
             $.ajax({
                 type: 'POST',
@@ -57,17 +63,16 @@
                     handleRefreshData(data)
                 },
             });
-        });
-        @endforeach
-            function handleRefreshData(data) {
+        }
+
+             function handleRefreshData(data) {
                 $(data).each(function (index, item) {
                     let inputContainer = $('#'+item.id +  '-container')
                     inputContainer.replaceWith(item.html)
                 })
             }
-        @endif
-        @if($isAjax)
 
+        @if($isAjax)
         $('#{{$formId}}').on('submit', function (event) {
             event.preventDefault();
             $('#{{$formId}}').find('#errors-container').html('')

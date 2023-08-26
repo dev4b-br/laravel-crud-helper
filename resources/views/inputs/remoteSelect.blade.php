@@ -83,6 +83,7 @@
                 minimumResultsForSearch: 0,
                 @if($maximumSelectionLength) maximumSelectionLength: {{ $maximumSelectionLength }}, @endif
 @if($minimumInputLength) minimumInputLength: {{ $minimumInputLength }}, @endif
+                @if($allowCreateItem) tags: true, @endif
                 ajax: {
                     type: "POST",
                     url: "{{$route}}",
