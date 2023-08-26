@@ -20,6 +20,8 @@ class ZipCodeInput extends TextInput
 
     private $stateInputName = 'state';
 
+    private $countryInputName = 'country';
+
     public function __construct(string $name, ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null, bool $autofill = true)
     {
         parent::__construct($name, $label, $value, $placeholder, $id);
@@ -34,7 +36,8 @@ class ZipCodeInput extends TextInput
             ->with('addressInputName', $this->addressInputName)
             ->with('neighborhoodInputName', $this->neighborhoodInputName)
             ->with('cityInputName', $this->cityInputName)
-            ->with('stateInputName', $this->stateInputName);
+            ->with('stateInputName', $this->stateInputName)
+            ->with('countryInputName', $this->countryInputName);
 
         return $view;
     }
@@ -69,5 +72,13 @@ class ZipCodeInput extends TextInput
     public function setStateInputName(string $stateInputName): void
     {
         $this->stateInputName = $stateInputName;
+    }
+
+    /**
+     * @param string $countryInputName
+     */
+    public function setCountryInputName(string $countryInputName): void
+    {
+        $this->countryInputName = $countryInputName;
     }
 }

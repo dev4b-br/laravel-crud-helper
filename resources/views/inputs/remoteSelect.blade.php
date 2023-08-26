@@ -31,6 +31,50 @@
 @section('laravel-crud-helper-scripts')
     @parent
     <script>
+        $.fn.select2.amd.define('select2/i18n/pt-BR', [], function () {
+            return {
+                errorLoading: function () {
+                    return 'Os resultados não puderam ser carregados.';
+                },
+                inputTooLong: function (args) {
+                    var overChars = args.input.length - args.maximum;
+                    var message = 'Por favor, remove ' + overChars + ' caracter';
+                    if (overChars != 1) {
+                        message += 'es';
+                    }
+
+                    return message;
+                },
+                inputTooShort: function (args) {
+                    var remainingChars = args.minimum - args.input.length;
+
+                    var message = 'Por favor, insira ' + remainingChars + ' caracteres';
+
+                    return message;
+                },
+                loadingMore: function () {
+                    return 'Carregando mais resultados…';
+                },
+                maximumSelected: function (args) {
+                    var message = 'Você só pode selecionar ' + args.maximum + ' ite';
+
+                    if (args.maximum == 1) {
+                        message += 'm';
+                    } else {
+                        message += 'ns';
+                    }
+
+                    return message;
+                },
+                noResults: function () {
+                    return 'Nenhum resultado encontrado';
+                },
+                searching: function () {
+                    return 'Procurando…';
+                }
+            };
+        });
+
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $(document).ready(function () {

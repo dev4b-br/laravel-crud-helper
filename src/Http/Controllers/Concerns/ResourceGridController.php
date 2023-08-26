@@ -17,6 +17,11 @@ trait ResourceGridController
         return $this->getGrid(\request())->render();
     }
 
+    public function exportData(string $type)
+    {
+        return $this->getGrid(\request())->export($type);
+    }
+
     public function show(string $id)
     {
         throw new \Exception('Not implemented yet');

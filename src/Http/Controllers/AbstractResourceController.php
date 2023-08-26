@@ -2,7 +2,6 @@
 
 namespace Dev4b\LaravelCrudHelper\Http\Controllers;
 
-use Dev4b\LaravelCrudHelper\Forms\AbstractResourceForm;
 use Dev4b\LaravelCrudHelper\Http\Controllers\Concerns\ResourceFormController;
 use Dev4b\LaravelCrudHelper\Http\Controllers\Concerns\ResourceGridController;
 use Illuminate\Http\Request;
