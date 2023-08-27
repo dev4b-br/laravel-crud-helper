@@ -3,6 +3,7 @@
 namespace Dev4b\LaravelCrudHelper\Forms;
 
 use Dev4b\LaravelCrudHelper\Concerns\Content;
+use Dev4b\LaravelCrudHelper\ContentBlocks\Collapse;
 use Dev4b\LaravelCrudHelper\Inputs\AbstractInput;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;
@@ -134,12 +135,25 @@ abstract class AbstractForm
     private function getInputsWithRefreshList()
     {
         $inputs = [];
-        foreach ($this->inputs as $input) {
+        foreach ($this->getAllInputs($this->inputs) as $input) {
             if ($input instanceof AbstractInput && $input->getRefreshList()) {
                 $inputs[] = $input;
             }
         }
 
         return $inputs;
+    }
+
+    private function getAllInputs($inputs)
+    {
+        foreach ($inputs as $component) {
+            if ($component instanceof Collapse) {
+                $returnaData = array_merge($inputs, $this->getAllInputs($component->getContent()->getItems()));
+            } else {
+                $returnaData[] = $component;
+            }
+        }
+
+        return $returnaData;
     }
 }

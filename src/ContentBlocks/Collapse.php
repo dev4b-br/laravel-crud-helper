@@ -38,4 +38,9 @@ class Collapse implements Content
     {
         $this->content = $content;
     }
+
+    public function getContent(): Content
+    {
+        return $this->content;
+    }
 }

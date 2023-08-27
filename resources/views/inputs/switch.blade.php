@@ -1,4 +1,5 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{$id}}-container">
+    @if($label) <div class="text-light small fw-medium">{{ $label }}</div> @endif
     <label class="switch">
         <input type="checkbox"
                @if($value) checked @endif

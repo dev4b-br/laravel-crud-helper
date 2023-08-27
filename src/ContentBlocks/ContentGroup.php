@@ -24,4 +24,9 @@ class ContentGroup implements Content
     {
         $this->items[] = $item;
     }
+
+    public function getItems(): array
+    {
+        return $this->items;
+    }
 }
