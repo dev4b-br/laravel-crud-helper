@@ -16,6 +16,8 @@ class SelectInput extends AbstractInput
 
     protected bool $showDefaultOption = false;
 
+    protected bool $isSelect2 = true;
+
     public function __construct(string $name, ?string $label = null, ?array $options = [], ?bool $isMultiple = false, ?string $value = null, string $id = null)
     {
         parent::__construct('laravel-crud-helper::inputs.select', $name, $label, $value, $id);
@@ -31,7 +33,8 @@ class SelectInput extends AbstractInput
             ->with('isMultiple', $this->isMultiple)
             ->with('searchBar', $this->searchBar)
             ->with('oldKey', $this->oldKey)
-            ->with('showDefaultOption', $this->showDefaultOption);
+            ->with('showDefaultOption', $this->showDefaultOption)
+            ->with('isSelect2', $this->isSelect2);
 
         return $view;
     }
@@ -49,5 +52,10 @@ class SelectInput extends AbstractInput
     public function showDefaultOption(bool $showDefaultOption): void
     {
         $this->showDefaultOption = $showDefaultOption;
+    }
+
+    public function setIsSelect2(bool $isSelect2): void
+    {
+        $this->isSelect2 = $isSelect2;
     }
 }

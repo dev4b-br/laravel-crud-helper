@@ -2,8 +2,8 @@
     <label for="{{ $id }}" class="form-label">{{ $label }}@if($required)
             <span class="text-danger">*</span>
         @endif</label>
-    <input type="text" class="form-control
-           @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}" name="{{ $name }}"
+    <input type="text" class="form-control @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
+           name="{{ $name }}" @if($disabled) disabled @endif
            id="{{ $id }}" placeholder="{{ $placeholder }}" value="{{ old($oldKey) ?? $value }}"/>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
@@ -23,9 +23,9 @@
     @parent
     <script>
         $(document).ready(function () {
-            new Cleave("#{{ $id }}", {
+            new Cleave("input[id^='{{ $id }}']", {
                 numeral: true,
-                prefix: "{{$currency}}",
+                prefix: "{{$currency}} ",
             });
         })
     </script>

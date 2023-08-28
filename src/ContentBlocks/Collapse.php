@@ -11,11 +11,11 @@ class Collapse implements Content
     /**
      * @var Content
      */
-    private Content $content ;
+    protected ?Content $content;
 
-    private string $title;
+    protected string $title;
 
-    private string $id;
+    protected string $id;
 
     public function __construct(string $title)
     {

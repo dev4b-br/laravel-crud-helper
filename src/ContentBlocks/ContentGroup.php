@@ -10,7 +10,7 @@ class ContentGroup implements Content
     /**
      * @var Content[]
      */
-    private array $items = [];
+    protected array $items = [];
 
     public function render()
     {

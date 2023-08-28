@@ -2,8 +2,8 @@
     <label for="{{ $id }}" class="form-label">{{ $label }}@if($required)
             <span class="text-danger">*</span>
         @endif</label>
-    <input type="{{ $type }}" class="form-control
-           @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}" name="{{ $name }}"
+    <input type="{{ $type }}" class="form-control @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
+           name="{{ $name }}" @if($disabled) disabled @endif
            id="{{ $id }}" placeholder="{{ $placeholder }}" value="{{ old($oldKey) ?? $value }}"/>
     @if($hint)
         <div class="form-text">{{ $hint }}</div>
