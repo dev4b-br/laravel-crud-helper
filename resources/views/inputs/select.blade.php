@@ -82,11 +82,13 @@
             });
 
             $(document).ready(function () {
+                let parentModalId = $("#{{ $id }}").closest(".modal").attr('id');
                 $("#{{ $id }}").select2({
+                    dropdownParent: parentModalId ? ("#" + parentModalId) : $("body"),
                     language: "pt-BR",
                     @if(!$searchBar) minimumResultsForSearch: -1,@endif
                 });
-            })
+            });
         </script>
     @endif
 @endsection
