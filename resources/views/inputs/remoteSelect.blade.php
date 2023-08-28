@@ -79,7 +79,7 @@
 
         $(document).ready(function () {
             $("#{{ $id }}").select2({
-                dropdownParent: "#modal",
+                dropdownParent: "#" + $("#{{ $id }}").closest(".modal").attr('id'),
                 language: "pt-BR",
                 minimumResultsForSearch: 0,
                 @if($maximumSelectionLength) maximumSelectionLength: {{ $maximumSelectionLength }}, @endif
