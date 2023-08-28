@@ -78,6 +78,7 @@
 
         $(document).ready(function () {
             $("#{{ $id }}").select2({
+                dropdownParent: "#modal",
                 language: "pt-BR",
                 @if(!$searchBar) minimumResultsForSearch: -1,@endif
             });

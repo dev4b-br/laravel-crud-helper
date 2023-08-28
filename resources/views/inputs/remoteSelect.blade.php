@@ -79,6 +79,7 @@
 
         $(document).ready(function () {
             $("#{{ $id }}").select2({
+                dropdownParent: "#modal",
                 language: "pt-BR",
                 minimumResultsForSearch: 0,
                 @if($maximumSelectionLength) maximumSelectionLength: {{ $maximumSelectionLength }}, @endif
