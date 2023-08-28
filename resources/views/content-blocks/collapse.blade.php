@@ -1,11 +1,11 @@
 <div class="row">
     <h5 class="collapsible-header {{ implode(' ', $classes) }} d-flex align-items-center" data-bs-toggle="collapse" href="#{{ $id }}" role="button"
-        aria-expanded="true"
+        @if(!$closed) aria-expanded="true" @endif
         aria-controls="{{ $id }}">{{ $title }}
         <span class="mdi mdi-chevron-down" style="vertical-align: 2px; margin: 0 0.5rem"></span>
         <span class="flex-grow-1 bg-secondary" style="height: 1px"></span>
     </h5>
-    <div class="collapse show" id="{{ $id }}">
+    <div class="collapse @if(!$closed) show @endif" id="{{ $id }}">
         <div class="p-3">
             {!! $content->render() !!}
         </div>

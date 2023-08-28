@@ -17,6 +17,8 @@ class Collapse implements Content
 
     protected string $id;
 
+    protected bool $closed = false;
+
     public function __construct(string $title)
     {
         $this->title = $title;
@@ -29,7 +31,8 @@ class Collapse implements Content
         $view->with('id', $this->id)
             ->with('classes', $this->classes)
             ->with('title', $this->title)
-            ->with('content', $this->content);
+            ->with('content', $this->content)
+            ->with('closed', $this->closed);
 
         return $view;
     }
@@ -42,5 +45,10 @@ class Collapse implements Content
     public function getContent(): Content
     {
         return $this->content;
+    }
+
+    public function setClosed(bool $closed): void
+    {
+        $this->closed = $closed;
     }
 }
