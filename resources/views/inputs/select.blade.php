@@ -5,6 +5,7 @@
     <select @if($isMultiple) multiple
             @endif class="form-select select2 @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
             name="{{ $name }}@if($isMultiple)[]@endif" id="{{ $id }}">
+        @if($showDefaultOption) <option  disabled  @if(!old($oldKey, $value)) selected  @endif>Selecione</option> @endif
         @foreach($options as $key => $option)
             <option value="{{ $key }}"
                     @if($isMultiple && in_array($key, old($oldKey))) selected
@@ -39,7 +40,7 @@
                 },
                 inputTooLong: function (args) {
                     var overChars = args.input.length - args.maximum;
-                    var message = 'Por favor, remove ' + overChars + ' caracter';
+                    var message = 'Por favor, remova ' + overChars + ' caracter';
                     if (overChars != 1) {
                         message += 'es';
                     }
