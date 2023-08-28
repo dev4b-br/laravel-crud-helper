@@ -78,13 +78,14 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $(document).ready(function () {
+            let parentModalId = $("#{{ $id }}").closest(".modal").attr('id');
             $("#{{ $id }}").select2({
-                dropdownParent: "#" + $("#{{ $id }}").closest(".modal").attr('id'),
+                dropdownParent: parentModalId ? ("#" + parentModalId) : $("body"),
                 language: "pt-BR",
                 minimumResultsForSearch: 0,
                 @if($maximumSelectionLength) maximumSelectionLength: {{ $maximumSelectionLength }}, @endif
-@if($minimumInputLength) minimumInputLength: {{ $minimumInputLength }}, @endif
-                @if($allowCreateItem) tags: true, @endif
+                    @if($minimumInputLength) minimumInputLength: {{ $minimumInputLength }}, @endif
+                    @if($allowCreateItem) tags: true, @endif
                 ajax: {
                     type: "POST",
                     url: "{{$route}}",
