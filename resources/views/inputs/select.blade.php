@@ -5,7 +5,9 @@
     <select @if($isMultiple) multiple
             @endif class="form-select select2 @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
             name="{{ $name }}@if($isMultiple)[]@endif" id="{{ $id }}">
-        @if($showDefaultOption) <option  disabled  @if(!old($oldKey, $value)) selected  @endif>Selecione</option> @endif
+        @if($showDefaultOption)
+            <option disabled @if(!old($oldKey, $value)) selected @endif>Selecione</option>
+        @endif
         @foreach($options as $key => $option)
             <option value="{{ $key }}"
                     @if($isMultiple && in_array($key, old($oldKey))) selected
@@ -78,7 +80,9 @@
         });
 
         $(document).ready(function () {
+            let parentModalId = $("#{{ $id }}").closest(".modal").attr('id');
             $("#{{ $id }}").select2({
+                dropdownParent: parentModalId ? ("#" + parentModalId) : $("body"),
                 language: "pt-BR",
                 @if(!$searchBar) minimumResultsForSearch: -1,@endif
             });
