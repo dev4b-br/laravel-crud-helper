@@ -135,6 +135,7 @@ abstract class AbstractForm
     private function getInputsWithRefreshList()
     {
         $inputs = [];
+
         foreach ($this->getAllInputs($this->inputs) as $input) {
             if ($input instanceof AbstractInput && $input->getRefreshList()) {
                 $inputs[] = $input;
@@ -146,14 +147,16 @@ abstract class AbstractForm
 
     private function getAllInputs($inputs)
     {
+        $returnData = [];
+
         foreach ($inputs as $component) {
             if ($component instanceof Collapse) {
-                $returnaData = array_merge($inputs, $this->getAllInputs($component->getContent()->getItems()));
+                $returnData = array_merge($inputs, $this->getAllInputs($component->getContent()->getItems()));
             } else {
-                $returnaData[] = $component;
+                $returnData[] = $component;
             }
         }
 
-        return $returnaData;
+        return $returnData;
     }
 }

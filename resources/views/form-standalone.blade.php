@@ -65,12 +65,12 @@
             });
         }
 
-             function handleRefreshData(data) {
-                $(data).each(function (index, item) {
-                    let inputContainer = $('#'+item.id +  '-container')
-                    inputContainer.replaceWith(item.html)
-                })
-            }
+        function handleRefreshData(data) {
+            $(data).each(function (index, item) {
+                let inputContainer = $('#' + item.id + '-container')
+                inputContainer.replaceWith(item.html)
+            })
+        }
 
         @if($isAjax)
         $('#{{$formId}}').on('submit', function (event) {
