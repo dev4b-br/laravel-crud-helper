@@ -29,6 +29,10 @@
             inputRowClone.find('.remove-input-row-btn').removeClass('d-none');
             lastRowEl.after(inputRowClone);
             inputRowClone.find('input').val('')
+
+            @if($callbackFunction)
+                {{$callbackFunction}}(inputRowClone)
+            @endif
         }
 
         $('.add-input-row-btn').on('click', function () {

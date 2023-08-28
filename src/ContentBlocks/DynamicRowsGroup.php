@@ -2,24 +2,24 @@
 
 namespace Dev4b\LaravelCrudHelper\ContentBlocks;
 
-use Dev4b\LaravelCrudHelper\Concerns\AbstractBlock;
-use Dev4b\LaravelCrudHelper\Concerns\Content;
-use Illuminate\Contracts\Support\Renderable;
-
-class DynamicRowsGroup Extends ContentGroup
+class DynamicRowsGroup extends ContentGroup
 {
+    protected $callbackFunction;
+
     public function render()
     {
-        $this->addClassToItems();
-
         $view = view('laravel-crud-helper::content-blocks.dynamicRowsGroup');
-        $view->with('items', $this->items);
+        $view->with('items', $this->items)
+            ->with('callbackFunction', $this->callbackFunction);
 
         return $view;
     }
 
-    private function addClassToItems()
+    /**
+     * @param mixed $callbackFunction
+     */
+    public function setCallbackFunction($callbackFunction): void
     {
-
+        $this->callbackFunction = $callbackFunction;
     }
 }
