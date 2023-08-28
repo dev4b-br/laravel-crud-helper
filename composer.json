@@ -12,7 +12,9 @@
             "email": "munizeverton@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "barryvdh/laravel-dompdf": "^2.0",
+    },
     "extra": {
         "laravel": {
             "providers": [
