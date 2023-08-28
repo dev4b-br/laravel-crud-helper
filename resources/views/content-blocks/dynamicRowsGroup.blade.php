@@ -4,11 +4,11 @@
         @foreach($items as $item)
             {!! $item->render() !!}
         @endforeach
-        <div class="col-1">
-            <a class="btn btn-label-success p-1 add-input-row-btn" style="top: 10px">
+        <div class="col-1 d-flex align-items-center">
+            <a class="btn btn-label-success p-1 add-input-row-btn" style="margin-top: 12px">
                 <span class="mdi mdi-plus"></span>
             </a>
-            <a class="btn btn-label-danger p-1 remove-input-row-btn d-none" style="top: 10px">
+            <a class="btn btn-label-danger p-1 remove-input-row-btn d-none" style="margin-top: 12px">
                 <span class="mdi mdi-minus"></span>
             </a>
         </div>
