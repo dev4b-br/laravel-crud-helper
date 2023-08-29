@@ -23,6 +23,8 @@ trait ResourceFormController
         $form->execute($request);
 
         if ($form->isAjax) {
+            \Session::flash('message', $this->getCreatedMessage());
+
             return response()->json([
                 'success' => true,
                 'message' => $this->getCreatedMessage(),
