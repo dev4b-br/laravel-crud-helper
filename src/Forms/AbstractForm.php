@@ -20,7 +20,7 @@ abstract class AbstractForm
 
     protected string $id;
 
-    protected bool $isAjax = false;
+    public bool $isAjax = false;
 
     protected ?string $enctype = null;
 

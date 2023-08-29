@@ -102,8 +102,8 @@
                             @if($showErrorsOnTop)
                             $('#{{$formId}}').find('#errors-container').append(`<div class="alert alert-danger" role="alert">${val}</div>`);
                             @endif
-                            $('#{{$formId}}').find(`#${key}-container`).append(`<div class="invalid-feedback">${val}</div>`);
-                            $('#{{$formId}}').find(`#${key}-container`).find(':input').addClass('is-invalid')
+                            $('#{{$formId}}').find(`[id^=${key}][id $=-container]`).append(`<div class="invalid-feedback">${val}</div>`);
+                            $('#{{$formId}}').find(`[id^=${key}][id $=-container]`).find(':input').addClass('is-invalid')
                         });
                     }
                 }
