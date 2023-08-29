@@ -26,6 +26,8 @@ abstract class AbstractForm
 
     protected ?string $changeFieldCallbackUrl = null;
 
+    protected bool $showErrorsOnTop = true;
+
     public function __construct(?string $parentView = null)
     {
         $this->parentView = $parentView;
@@ -51,7 +53,8 @@ abstract class AbstractForm
             ->with('formId', uniqid('form-'))
             ->with('enctype', $this->enctype)
             ->with('changeFieldCallbackUrl', $this->changeFieldCallbackUrl)
-            ->with('inputsWithRefreshList', $this->getInputsWithRefreshList());
+            ->with('inputsWithRefreshList', $this->getInputsWithRefreshList())
+            ->with('showErrorsOnTop', $this->showErrorsOnTop);
     }
 
     abstract public function execute(Request $request);
@@ -151,7 +154,7 @@ abstract class AbstractForm
 
         foreach ($inputs as $component) {
             if ($component instanceof Collapse) {
-                $returnData = array_merge($inputs, $this->getAllInputs($component->getContent()->getItems()));
+                $returnData = array_merge($returnData, $this->getAllInputs($component->getContent()->getItems()));
             } else {
                 $returnData[] = $component;
             }
