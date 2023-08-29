@@ -99,7 +99,9 @@
                         var jsonData = $.parseJSON(data.responseText);
                         var errors = jsonData.errors
                         $.each(errors, function (key, val) {
+                            @if($showErrorsOnTop)
                             $('#{{$formId}}').find('#errors-container').append(`<div class="alert alert-danger" role="alert">${val}</div>`);
+                            @endif
                             $('#{{$formId}}').find(`#${key}-container`).append(`<div class="invalid-feedback">${val}</div>`);
                             $('#{{$formId}}').find(`#${key}-container`).find(':input').addClass('is-invalid')
                         });
