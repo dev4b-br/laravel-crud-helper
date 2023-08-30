@@ -4,6 +4,7 @@ namespace Dev4b\LaravelCrudHelper\Forms;
 
 use Dev4b\LaravelCrudHelper\Concerns\Content;
 use Dev4b\LaravelCrudHelper\ContentBlocks\Collapse;
+use Dev4b\LaravelCrudHelper\ContentBlocks\ContentGroup;
 use Dev4b\LaravelCrudHelper\Inputs\AbstractInput;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;
@@ -153,7 +154,7 @@ abstract class AbstractForm
         $returnData = [];
 
         foreach ($inputs as $component) {
-            if ($component instanceof Collapse) {
+            if ($component instanceof Collapse && $component->getContent() instanceof ContentGroup) {
                 $returnData = array_merge($returnData, $this->getAllInputs($component->getContent()->getItems()));
             } else {
                 $returnData[] = $component;
