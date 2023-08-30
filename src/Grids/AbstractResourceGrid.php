@@ -129,11 +129,6 @@ abstract class AbstractResourceGrid
 
     public function exportCsv($data)
     {
-        $fileName = $this->getResourceName() . '.csv';
-        $headers = ['Content-Type' => 'text/csv'];
-
-        $handle = fopen($fileName, 'w+');
-
         $csvData = [];
         $columnsArray = [];
         foreach ($this->columns as $column) {
@@ -155,13 +150,14 @@ abstract class AbstractResourceGrid
             $csvData[] = implode(',', $itemsArray);
         }
 
+        $csvText = '';
         foreach ($csvData as $row) {
-            fputcsv($handle, [$row]);
+            $csvText .= $row . PHP_EOL;
         }
 
-        fclose($handle);
-
-        return response()->download($fileName, $fileName, $headers);
+        return response()->streamDownload(function () use ($csvText) {
+            echo $csvText;
+        }, $this->getResourceName() . '.csv');
     }
 
     public function exportPdf($data)
