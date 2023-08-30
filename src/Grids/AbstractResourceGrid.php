@@ -152,7 +152,7 @@ abstract class AbstractResourceGrid
 
         $csvText = '';
         foreach ($csvData as $row) {
-            $csvText .= $row . "\n";
+            $csvText .= $row . PHP_EOL;
         }
 
         return response()->streamDownload(function () use ($csvText) {
