@@ -91,6 +91,11 @@ abstract class AbstractInput extends AbstractBlock
         return $this->id;
     }
 
+    public function getIdClean()
+    {
+        return str_replace(['[',']'], '', $this->id);
+    }
+
     public function getName(): string
     {
         return $this->name;
