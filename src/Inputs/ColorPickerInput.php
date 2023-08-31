@@ -18,9 +18,4 @@ class ColorPickerInput extends AbstractInput
 
         return $view;
     }
-
-    public function setDefaultColor(string $color): void
-    {
-        $this->defaultColor = $color;
-    }
 }
