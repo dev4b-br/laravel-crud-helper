@@ -1,5 +1,5 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{ $id }}-container">
-    <input name="{{ $name }}" id="{{ $id }}" value="{{ $defaultColor }}" type="hidden"/>
+    <input name="{{ $name }}" id="{{ $id }}" value="{{ $value ?? $defaultValue }}" type="hidden"/>
     <label for="{{ $id }}-monolith-color-picker" class="form-label">{{ $label }}@if($required)
             <span class="text-danger">*</span>
         @endif</label>
@@ -15,7 +15,7 @@
         var monolithPicker = pickr.create({
             el: "#{{ $id }}-monolith-color-picker",
             theme: "monolith",
-            default: "{{ $defaultColor }}",
+            default: "{{ $value ?? $defaultValue }}",
             components: {
                 // Main components
                 preview: true,
