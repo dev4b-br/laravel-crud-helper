@@ -4,7 +4,7 @@ namespace Dev4b\LaravelCrudHelper\Inputs;
 
 class ColorPickerInput extends AbstractInput
 {
-    protected string $defaultColor = "#0d6efd";
+    protected string $defaultValue = "#0d6efd";
 
     public function __construct(string $name, ?string $label = null, ?string $id = null)
     {
@@ -14,7 +14,7 @@ class ColorPickerInput extends AbstractInput
     public function render()
     {
         $view = parent::render();
-        $view->with('defaultColor', $this->defaultColor);
+        $view->with('defaultValue', $this->defaultValue);
 
         return $view;
     }
