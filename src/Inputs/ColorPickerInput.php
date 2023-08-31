@@ -6,9 +6,9 @@ class ColorPickerInput extends AbstractInput
 {
     protected string $defaultValue = "#0d6efd";
 
-    public function __construct(string $name, ?string $label = null, ?string $id = null)
+    public function __construct(string $name, ?string $label = null, ?string $id = null, ?string $value = null)
     {
-        parent::__construct('laravel-crud-helper::inputs.colorPicker', $name, $label, $id);
+        parent::__construct('laravel-crud-helper::inputs.colorPicker', $name, $label, $id, $value);
     }
 
     public function render()
