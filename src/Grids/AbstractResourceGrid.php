@@ -26,9 +26,9 @@ abstract class AbstractResourceGrid
 
     private array $filters = [];
 
-    protected bool $exportCsv = true;
+    protected bool $exportCsv = false;
 
-    protected bool $exportPdf = true;
+    protected bool $exportPdf = false;
 
     public function __construct(Model $resource, $parentView, Request $request, $actionsColumn = true)
     {
