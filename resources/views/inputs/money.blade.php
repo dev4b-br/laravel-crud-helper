@@ -25,8 +25,12 @@
         $(document).ready(function () {
             new Cleave("input[id^='{{ $id }}']", {
                 numeral: true,
+                numeralThousandsGroupStyle: 'thousand',
+                numeralDecimalScale: 2,
+                delimiter: '.',
+                numeralDecimalMark: ',',
                 prefix: "{{$currency}} ",
             });
-        })
+        });
     </script>
 @endsection
