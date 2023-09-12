@@ -21,8 +21,6 @@
 
 @section('laravel-crud-helper-scripts')
     @parent
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
-
     <script>
         $(document).ready(function () {
             new Cleave("input[id^='{{ $id }}']", {
