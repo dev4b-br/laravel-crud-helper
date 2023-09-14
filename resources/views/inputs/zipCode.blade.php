@@ -13,16 +13,17 @@
             fetch(url)
                 .then(response => response.json())
                 .then(json => {
-
                     if (json.logradouro) {
                         document.querySelector('input[name={{$addressInputName}}]').value = json.logradouro;
                         document.querySelector('input[name={{$neighborhoodInputName}}]').value = json.bairro;
                         document.querySelector('input[name={{$cityInputName}}]').value = json.localidade;
-                        document.querySelector('input[name={{$stateInputName}}]').value = json.uf;
+
+                        const estadoSelecionado = json.uf;
+
+                        $('#state').val(estadoSelecionado).trigger('change');
+
                         document.querySelector('input[name={{$countryInputName}}]').value = 'Brasil';
-
                     }
-
 
                 });
         });
