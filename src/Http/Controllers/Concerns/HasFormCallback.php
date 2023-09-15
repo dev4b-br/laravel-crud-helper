@@ -2,7 +2,6 @@
 
 namespace Dev4b\LaravelCrudHelper\Http\Controllers\Concerns;
 
-use Dev4b\LaravelCrudHelper\Forms\AbstractResourceForm;
 use Illuminate\Http\Request;
 
 trait HasFormCallback
