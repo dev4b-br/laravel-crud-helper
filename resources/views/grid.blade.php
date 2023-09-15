@@ -181,6 +181,9 @@
             filterForm.attr('action', action);
             filterForm.attr('method', method);
             onTargetBlank && filterForm.attr('target', '_blank');
+            if (!onTargetBlank) {
+                filterForm.attr('target', '_self');
+            }
 
             filterForm.submit();
         }
