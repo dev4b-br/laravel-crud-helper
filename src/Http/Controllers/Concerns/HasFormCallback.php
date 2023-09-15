@@ -9,7 +9,7 @@ trait HasFormCallback
 {
     public function formCallback(Request $request)
     {
-        $form = $this->getForm();
+        $form = $this->getForm($request);
         return $form->changeFieldCallback($request);
     }
 }
