@@ -1,11 +1,11 @@
 <div class="card-body">
     <form action="{{ $action }}" method="post" id="{{$formId}}" enctype="{{$enctype}}">
         @isset($gridRoute)
-            <a href="{{ $gridRoute }}" class="d-flex align-items-center">
-                <span class="mdi mdi-chevron-left mdi-24px"></span>
-                <span>Voltar</span>
-            </a>
-            <br>
+            <div class="mb-3">
+                <a href="{{ $gridRoute }}">
+                    <span><i class="mdi mdi-chevron-left mdi-24px"></i>Voltar</span>
+                </a>
+            </div>
         @endisset
         <div id="errors-container">
             @if($errors->any())
@@ -50,15 +50,15 @@
         @endif
 
         function handleChangeFieldCallback(refreshList) {
-               let data = {
+            let data = {
                 _token: '{{ @csrf_token() }}',
                 formData: $('#{{$formId}}').serialize(),
-                refreshList:     refreshList,
+                refreshList: refreshList,
             }
             $.ajax({
                 type: 'POST',
                 data: data,
-                url:  '{{ $changeFieldCallbackUrl }}',
+                url: '{{ $changeFieldCallbackUrl }}',
                 success: function (data) {
                     handleRefreshData(data)
                 },
