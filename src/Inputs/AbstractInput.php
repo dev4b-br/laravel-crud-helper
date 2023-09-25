@@ -20,7 +20,7 @@ abstract class AbstractInput extends AbstractBlock
 
     protected ?string $placeholder;
 
-    private ?string $value;
+    private string|array|null $value;
 
     public $showInputErrorMessages = true;
 
@@ -32,7 +32,7 @@ abstract class AbstractInput extends AbstractBlock
 
     protected bool $disabled = false;
 
-    public function __construct(string $template, string $name, ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null)
+    public function __construct(string $template, string $name, ?string $label = null, string|array|null $value = null, ?string $placeholder = null, ?string $id = null)
     {
         $this->template = $template;
         $this->name = $name;
