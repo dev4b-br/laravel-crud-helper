@@ -18,7 +18,7 @@ class SelectInput extends AbstractInput
 
     protected bool $isSelect2 = true;
 
-    public function __construct(string $name, ?string $label = null, ?array $options = [], ?bool $isMultiple = false, ?string $value = null, string $id = null)
+    public function __construct(string $name, ?string $label = null, ?array $options = [], ?bool $isMultiple = false, string|array|null $value = null, string $id = null)
     {
         parent::__construct('laravel-crud-helper::inputs.select', $name, $label, $value, $id);
         $this->options = $options;

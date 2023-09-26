@@ -11,10 +11,8 @@
         @endif
         @foreach($options as $key => $option)
             <option value="{{ $key }}"
-                    @if($isMultiple && in_array($key, old($oldKey))) selected
-                    @elseif(!$isMultiple && old($oldKey) == $key) selected @endif
-                    @if(!old($oldKey) && $value == $key) selected @endif
-            >
+                    @if(gettype($value) == 'string' && ($value == $key) || $key == old($oldKey)) selected @endif
+                    @if(gettype($value) == 'array' && (in_array($key, $value ?? [])) || in_array($key, old($oldKey) ?? [])) selected @endif>
                 {{ $option }}
             </option>
         @endforeach
