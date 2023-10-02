@@ -2,7 +2,8 @@
     <label for="{{ $id }}" class="form-label">{{ $label }}@if($required)
             <span class="text-danger">*</span>
         @endif</label>
-    <input type="{{ $type }}" class="form-control @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
+    <input type="{{ $type }}"
+           class="form-control @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
            name="{{ $name }}" @if($disabled) disabled @endif
            id="{{ $id }}" placeholder="{{ $placeholder }}" value="{{ old($oldKey) ?? $value }}"/>
     @if($hint)
@@ -26,8 +27,12 @@
         $(document).ready(function () {
             new Cleave("#{{ $id }}", {
                 @if($maskDelimiter) delimiters: ["{!! implode('","', $maskDelimiter) !!}"], @endif
+                    @if($isNumericalOnly && !$maskBlocks)
+                blocks: [100],
+                @else
                 blocks: [{{ implode(',',$maskBlocks) }}],
-                @if($isNumericalOnly) numericOnly: true, @endif
+                @endif
+                    @if($isNumericalOnly) numericOnly: true, @endif
                     @if($isUpperCase) uppercase: true, @endif
             });
         })
