@@ -23,7 +23,7 @@
 @section('laravel-crud-helper-scripts')
     @parent
     <script>
-        @if($maskBlocks)
+        @if($maskBlocks || $isNumericalOnly)
         $(document).ready(function () {
             new Cleave("#{{ $id }}", {
                 @if($maskDelimiter) delimiters: ["{!! implode('","', $maskDelimiter) !!}"], @endif
