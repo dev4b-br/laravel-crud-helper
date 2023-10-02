@@ -14,7 +14,7 @@ class RemoteSelectInput extends AbstractInput
 
     protected ?bool $isMultiple;
 
-    private $options;
+    private $options = [];
 
     private ?array $value;
 
