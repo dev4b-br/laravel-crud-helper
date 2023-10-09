@@ -1,10 +1,13 @@
 <div class="card-body">
     <form action="{{ $action }}" method="post" id="{{$formId}}" enctype="{{$enctype}}">
         @isset($gridRoute)
-            <div class="mb-3">
+            <div class="mb-3 d-flex justify-content-between align-items-center">
                 <a href="{{ $gridRoute }}">
                     <span><i class="mdi mdi-chevron-left mdi-24px"></i>Voltar</span>
                 </a>
+                @if($dropdown)
+                    {!! $dropdown !!}
+                @endif
             </div>
         @endisset
         <div id="errors-container">
