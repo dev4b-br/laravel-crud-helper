@@ -12,9 +12,9 @@ class Link implements Content
 
     protected string $url = '';
 
-    protected string $target;
+    protected string $target = '_self';
 
-    public function __construct(string $name, string $url, string $target = '_blank')
+    public function __construct(string $name, string $url, string $target = '_self')
     {
         $this->name = $name;
         $this->url = $url;
