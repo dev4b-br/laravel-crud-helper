@@ -8,11 +8,11 @@ class Link implements Content
 {
     protected array $classes = [];
 
-    protected string $name = '';
+    protected string $name;
 
-    protected string $url = '';
+    protected string $url;
 
-    protected string $target = '_self';
+    protected string $target;
 
     public function __construct(string $name, string $url, string $target = '_self')
     {
