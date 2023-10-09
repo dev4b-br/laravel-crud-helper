@@ -12,7 +12,7 @@
         @foreach($options as $key => $option)
             <option value="{{ $key }}"
                     @if(gettype($value) == 'string' && ($value == $key) || $key == old($oldKey)) selected @endif
-                    @if(gettype($value) == 'array' && (in_array($key, $value ?? [])) || in_array($key, old($oldKey) ?? [])) selected @endif>
+                    @if(gettype($value) == 'array' && (in_array($key, $value ?? [])) || in_array($key, [old($oldKey)] ?? [])) selected @endif>
                 {{ $option }}
             </option>
         @endforeach
