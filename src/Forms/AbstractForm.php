@@ -5,6 +5,7 @@ namespace Dev4b\LaravelCrudHelper\Forms;
 use Dev4b\LaravelCrudHelper\Concerns\Content;
 use Dev4b\LaravelCrudHelper\ContentBlocks\Collapse;
 use Dev4b\LaravelCrudHelper\ContentBlocks\ContentGroup;
+use Dev4b\LaravelCrudHelper\ContentBlocks\Dropdown;
 use Dev4b\LaravelCrudHelper\Inputs\AbstractInput;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;
@@ -28,6 +29,8 @@ abstract class AbstractForm
     protected ?string $changeFieldCallbackUrl = null;
 
     protected bool $showErrorsOnTop = true;
+
+    protected ?Dropdown $dropdown = null;
 
     public function __construct(?string $parentView = null)
     {
@@ -55,7 +58,8 @@ abstract class AbstractForm
             ->with('enctype', $this->enctype)
             ->with('changeFieldCallbackUrl', $this->changeFieldCallbackUrl)
             ->with('inputsWithRefreshList', $this->getInputsWithRefreshList())
-            ->with('showErrorsOnTop', $this->showErrorsOnTop);
+            ->with('showErrorsOnTop', $this->showErrorsOnTop)
+            ->with('dropdown', $this->dropdown);
     }
 
     abstract public function execute(Request $request);
@@ -134,6 +138,11 @@ abstract class AbstractForm
     public function setCallbackUrl(string $changeFieldCallbackUrl): void
     {
         $this->changeFieldCallbackUrl = $changeFieldCallbackUrl;
+    }
+
+    public function setDropdown(Dropdown $dropdown): void
+    {
+        $this->dropdown = $dropdown;
     }
 
     private function getInputsWithRefreshList()

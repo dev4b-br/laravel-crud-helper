@@ -1,3 +1,3 @@
-@foreach($content as $contetBlock)
-    {!! $contetBlock->render() !!}
+@foreach($content as $contentBlock)
+    {!! $contentBlock->render() !!}
 @endforeach
