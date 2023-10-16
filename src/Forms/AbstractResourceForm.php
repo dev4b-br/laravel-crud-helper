@@ -96,7 +96,7 @@ abstract class AbstractResourceForm extends AbstractForm
         return 'Atualizar';
     }
 
-    private function getResourceName()
+    protected function getResourceName()
     {
         $className = explode('\\', get_class($this->resource));
         return Str::plural(Str::lower(end($className)));

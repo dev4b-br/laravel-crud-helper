@@ -71,7 +71,7 @@ abstract class AbstractResourceGrid
         return $this->view()->render();
     }
 
-    private function getResourceName()
+    protected function getResourceName()
     {
         $className = explode('\\', get_class($this->resource));
         return Str::plural(Str::lower(end($className)));
