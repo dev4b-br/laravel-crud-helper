@@ -6,8 +6,9 @@
         <input type="{{ $type }}"
                @if($checked) checked @endif
                @if($disabled) disabled @endif
+                @if($value) value="{{ $value }}" @else value="1" @endif
                class="form-check-input @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
-               name="{{ $name }}" id="{{ $id }}" value="1"/>
+               name="{{ $name }}" id="{{ $id }}"/>
         @if($hint)
             <div class="form-text">{{ $hint }}</div>
         @endif

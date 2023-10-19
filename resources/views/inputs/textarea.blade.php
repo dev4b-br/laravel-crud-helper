@@ -17,3 +17,26 @@
         @endif
     @endif
 </div>
+
+@section('laravel-crud-helper-scripts')
+    @parent
+    @if($isRichText)
+        <script src="/assets/js/ckeditor.js"></script>
+        <script src="/assets/js/ckeditor_pt-br.js"></script>
+        <script>
+            ClassicEditor
+                .create(
+                    document.querySelector('#{{$id}}'),
+                    {
+                        language: 'pt-br',
+                        options: {}
+                    }
+                )
+        </script>
+        <style>
+            .ck-editor__editable {
+                min-height: 500px;
+            }
+        </style>
+    @endif
+@endsection

@@ -10,7 +10,7 @@ class CheckboxInput extends AbstractInput
 
     public function __construct(string $name, ?string $label = null, string $id = null)
     {
-        parent::__construct('laravel-crud-helper::inputs.checkbox', $name, $label, $id);
+        parent::__construct('laravel-crud-helper::inputs.checkbox', $name, $label, null, null, $id);
     }
 
     public function render()
