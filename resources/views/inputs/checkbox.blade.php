@@ -5,6 +5,7 @@
             @endif</label>
         <input type="{{ $type }}"
                @if($checked) checked @endif
+               @if($disabled) disabled @endif
                class="form-check-input @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
                name="{{ $name }}" id="{{ $id }}" value="1"/>
         @if($hint)
