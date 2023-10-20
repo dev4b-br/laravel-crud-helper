@@ -1,7 +1,7 @@
 @extends($parentView)
 @section('laravel-crud-helper')
-
     <div class="card-header">
+        @if($gridTitle) <h3 class="card-title mb-5">{{ $gridTitle }}</h3> @endif
         @if($errors->any())
             @foreach($errors->all() as $error)
                 <div class="alert alert-danger" role="alert">
