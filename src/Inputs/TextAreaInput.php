@@ -10,6 +10,8 @@ class TextAreaInput extends AbstractInput
 
     protected bool $isRichText = false;
 
+    protected string $tinyMCEScripts = '';
+
     public function __construct(string $name, ?string $label = null, ?string $value = null, ?string $placeholder = null, string $id = null)
     {
         $this->oldKey = $name;
@@ -20,7 +22,8 @@ class TextAreaInput extends AbstractInput
     {
         $view = parent::render();
         $view->with('oldKey', $this->oldKey)
-            ->with('isRichText', $this->isRichText);
+            ->with('isRichText', $this->isRichText)
+            ->with('tinyMCEScripts', $this->tinyMCEScripts);
 
         return $view;
     }
@@ -28,5 +31,15 @@ class TextAreaInput extends AbstractInput
     public function setIsRichText(bool $isRichText): void
     {
         $this->isRichText = $isRichText;
+    }
+
+    public function getTinyMCEScripts(): string
+    {
+        return $this->tinyMCEScripts;
+    }
+
+    public function setTinyMCEScripts(string $tinyMCEScripts): void
+    {
+        $this->tinyMCEScripts = $tinyMCEScripts;
     }
 }

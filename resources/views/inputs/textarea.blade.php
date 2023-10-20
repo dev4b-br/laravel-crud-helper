@@ -21,18 +21,25 @@
 @section('laravel-crud-helper-scripts')
     @parent
     @if($isRichText)
-        <script src="/assets/js/ckeditor.js"></script>
-        <script src="/assets/js/ckeditor_pt-br.js"></script>
-        <script>
-            ClassicEditor
-                .create(
-                    document.querySelector('#{{$id}}'),
-                    {
-                        language: 'pt-br',
-                        options: {}
-                    }
-                )
-        </script>
+        <script src='/assets/js/tinymce.js'></script>
+        <script src='/assets/js/tinymce-pt_BR.js'></script>
+        @if($tinyMCEScripts)
+            {!! $tinyMCEScripts !!}
+        @else
+            <script>
+                let editor = tinymce.init({
+                    selector: '#{{$id}}',
+                    height: 500,
+                    toolbar: 'undo redo | styleselect | bold italic | alignleft'
+                        + ' aligncenter alignright alignjustify | '
+                        + 'bullist numlist outdent indent | link hr code | codes',
+                    menubar: false,
+                    relative_urls: false,
+                    convert_urls: false,
+                });
+            </script>
+        @endif
+
         <style>
             .ck-editor__editable {
                 min-height: 500px;
