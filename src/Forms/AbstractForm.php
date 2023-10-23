@@ -32,6 +32,8 @@ abstract class AbstractForm
 
     protected ?Dropdown $dropdown = null;
 
+    protected bool $renderSubmitButton = true;
+
     public function __construct(?string $parentView = null)
     {
         $this->parentView = $parentView;
@@ -47,7 +49,6 @@ abstract class AbstractForm
         if (!$this->parentView) {
             $view = 'laravel-crud-helper::form-standalone';
         }
-
         return view($view)
             ->with('parentView', $this->parentView)
             ->with('inputs', $this->inputs)
@@ -59,7 +60,8 @@ abstract class AbstractForm
             ->with('changeFieldCallbackUrl', $this->changeFieldCallbackUrl)
             ->with('inputsWithRefreshList', $this->getInputsWithRefreshList())
             ->with('showErrorsOnTop', $this->showErrorsOnTop)
-            ->with('dropdown', $this->dropdown);
+            ->with('dropdown', $this->dropdown)
+            ->with('renderSubmitButton', $this->renderSubmitButton);
     }
 
     abstract public function execute(Request $request);
@@ -171,5 +173,10 @@ abstract class AbstractForm
         }
 
         return $returnData;
+    }
+
+    protected function disableSubmitButton()
+    {
+        $this->renderSubmitButton = false;
     }
 }
