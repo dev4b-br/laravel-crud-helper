@@ -34,6 +34,7 @@ class SelectInput extends AbstractInput
             ->with('searchBar', $this->searchBar)
             ->with('oldKey', $this->oldKey)
             ->with('showDefaultOption', $this->showDefaultOption)
+            ->with('cleanId', $this->getIdClean())
             ->with('isSelect2', $this->isSelect2);
 
         return $view;
