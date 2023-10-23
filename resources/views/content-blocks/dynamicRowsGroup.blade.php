@@ -23,7 +23,7 @@
             let rowIndex = parseInt(rowIndexEl.val()) + 1;
 
             @foreach($items as $item)
-                inputRowClone.find('input[id^="{{ $item->getIdClean() }}"]').attr('name', '{{$item->getName()}}[' + rowIndex + ']');
+            inputRowClone.find('input[id^="{{ $item->getIdClean() }}"], select[id^="{{ $item->getIdClean() }}"]').attr('name', '{{str_replace(['[', ']'], '', $item->getName())}}[' + rowIndex + ']');
             @endforeach
             inputRowClone.find('.add-input-row-btn').addClass('d-none');
             inputRowClone.find('.remove-input-row-btn').removeClass('d-none');
