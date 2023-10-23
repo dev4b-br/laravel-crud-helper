@@ -27,6 +27,11 @@
             @endforeach
             inputRowClone.find('.add-input-row-btn').addClass('d-none');
             inputRowClone.find('.remove-input-row-btn').removeClass('d-none');
+            let parentModalId = $('select').closest(".modal").attr('id');
+            $('.select2').select2({
+                dropdownParent: parentModalId ? ("#" + parentModalId) : $("body"),
+                language: "pt-BR",
+            });
             lastRowEl.after(inputRowClone);
 
             inputRowClone.find('input').val('')
