@@ -63,7 +63,14 @@
                 data: data,
                 url: '{{ $changeFieldCallbackUrl }}',
                 success: function (data) {
-                    handleRefreshData(data)
+                    handleRefreshData(data);
+                    @if($inputsWithRefreshList)
+                    @foreach($inputsWithRefreshList as $inputWithRefreshList)
+                    $('#{!! $inputWithRefreshList->getId() !!}').on('change', function () {
+                        handleChangeFieldCallback(['{!! implode("','", $inputWithRefreshList->getRefreshList()) !!}'])
+                    });
+                    @endforeach
+                    @endif
                 },
             });
         }
