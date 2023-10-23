@@ -21,14 +21,16 @@
             let inputRowClone = lastRowEl.clone();
             let rowIndexEl = inputRowClone.find('.row-index');
             let rowIndex = parseInt(rowIndexEl.val()) + 1;
-            rowIndexEl.val(rowIndex);
+
             @foreach($items as $item)
                 inputRowClone.find('input[id^="{{ $item->getIdClean() }}"]').attr('name', '{{$item->getName()}}[' + rowIndex + ']');
             @endforeach
             inputRowClone.find('.add-input-row-btn').addClass('d-none');
             inputRowClone.find('.remove-input-row-btn').removeClass('d-none');
             lastRowEl.after(inputRowClone);
+
             inputRowClone.find('input').val('')
+            rowIndexEl.val(rowIndex);
 
             @if($callbackFunction)
                 {{$callbackFunction}}(inputRowClone)
