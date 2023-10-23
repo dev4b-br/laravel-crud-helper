@@ -80,8 +80,8 @@
             });
 
             $(document).ready(function () {
-                let parentModalId = $("#{{ $id }}").closest(".modal").attr('id');
-                $("#{{ $id }}").select2({
+                let parentModalId = $('select[id^="{{ $cleanId }}"]').closest(".modal").attr('id');
+                $('select[id^="{{ $cleanId }}"]').select2({
                     dropdownParent: parentModalId ? ("#" + parentModalId) : $("body"),
                     language: "pt-BR",
                     @if(!$searchBar) minimumResultsForSearch: -1,@endif

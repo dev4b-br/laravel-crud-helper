@@ -21,14 +21,21 @@
             let inputRowClone = lastRowEl.clone();
             let rowIndexEl = inputRowClone.find('.row-index');
             let rowIndex = parseInt(rowIndexEl.val()) + 1;
-            rowIndexEl.val(rowIndex);
+
             @foreach($items as $item)
-                inputRowClone.find('input[id^="{{ $item->getIdClean() }}"]').attr('name', '{{$item->getName()}}[' + rowIndex + ']');
+            inputRowClone.find('input[id^="{{ $item->getIdClean() }}"], select[id^="{{ $item->getIdClean() }}"]').attr('name', '{{str_replace(['[', ']'], '', $item->getName())}}[' + rowIndex + ']');
             @endforeach
             inputRowClone.find('.add-input-row-btn').addClass('d-none');
             inputRowClone.find('.remove-input-row-btn').removeClass('d-none');
+            let parentModalId = $('select').closest(".modal").attr('id');
+            $('.select2').select2({
+                dropdownParent: parentModalId ? ("#" + parentModalId) : $("body"),
+                language: "pt-BR",
+            });
             lastRowEl.after(inputRowClone);
+
             inputRowClone.find('input').val('')
+            rowIndexEl.val(rowIndex);
 
             @if($callbackFunction)
                 {{$callbackFunction}}(inputRowClone)
