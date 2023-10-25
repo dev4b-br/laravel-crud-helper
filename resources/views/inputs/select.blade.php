@@ -7,7 +7,7 @@
             @endif class="form-select @if($isSelect2) select2 @endif @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
             name="{{ $name }}@if($isMultiple)[]@endif" id="{{ $id }}">
         @if($showDefaultOption)
-            <option disabled @if(!old($oldKey, $value)) selected @endif>Selecione</option>
+            <option @if($disabledDefaultOption) disabled @endif @if(!old($oldKey, $value)) selected @endif value="">Selecione</option>
         @endif
         @foreach($options as $key => $option)
             <option value="{{ $key }}"
