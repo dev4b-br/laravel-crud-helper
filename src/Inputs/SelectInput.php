@@ -16,6 +16,8 @@ class SelectInput extends AbstractInput
 
     protected bool $showDefaultOption = false;
 
+    protected bool $disabledDefaultOption = true;
+
     protected bool $isSelect2 = true;
 
     public function __construct(string $name, ?string $label = null, ?array $options = [], ?bool $isMultiple = false, string|array|null $value = null, string $id = null)
@@ -34,6 +36,7 @@ class SelectInput extends AbstractInput
             ->with('searchBar', $this->searchBar)
             ->with('oldKey', $this->oldKey)
             ->with('showDefaultOption', $this->showDefaultOption)
+            ->with('disabledDefaultOption', $this->disabledDefaultOption)
             ->with('cleanId', $this->getIdClean())
             ->with('isSelect2', $this->isSelect2);
 
@@ -50,9 +53,10 @@ class SelectInput extends AbstractInput
         $this->options = $options;
     }
 
-    public function showDefaultOption(bool $showDefaultOption): void
+    public function showDefaultOption(bool $showDefaultOption, bool $disabledDefaultOption = true): void
     {
         $this->showDefaultOption = $showDefaultOption;
+        $this->disabledDefaultOption = $disabledDefaultOption;
     }
 
     public function setIsSelect2(bool $isSelect2): void
