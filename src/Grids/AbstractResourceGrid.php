@@ -3,6 +3,7 @@
 namespace Dev4b\LaravelCrudHelper\Grids;
 
 use Dev4b\LaravelCrudHelper\Inputs\AbstractInput;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -101,6 +102,11 @@ abstract class AbstractResourceGrid
     public function addFilter(AbstractInput $input)
     {
         $this->filters[] = $input;
+    }
+
+    public function addContentBlock(Renderable $contentBlock)
+    {
+        $this->filters[] = $contentBlock;
     }
 
     public function disableExportCsv(): void
