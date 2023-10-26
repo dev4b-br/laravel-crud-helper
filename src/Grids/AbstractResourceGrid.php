@@ -116,7 +116,12 @@ abstract class AbstractResourceGrid
 
     public function disableExportPdf(): void
     {
-        $this->exportPdf = false;
+        $this->exportPdf = true;
+    }
+
+    public function setExportView(string $exportView): void
+    {
+        $this->exportView = $exportView;
     }
 
     public function export(string $type)
