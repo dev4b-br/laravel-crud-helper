@@ -109,12 +109,12 @@ abstract class AbstractResourceGrid
         $this->filters[] = $contentBlock;
     }
 
-    public function disableExportCsv(): void
+    public function enableExportCsv(): void
     {
-        $this->exportCsv = false;
+        $this->exportCsv = true;
     }
 
-    public function disableExportPdf(): void
+    public function enableExportPdf(): void
     {
         $this->exportPdf = true;
     }
