@@ -1,6 +1,13 @@
 @extends($parentView)
 @section('laravel-crud-helper')
     <div class="card-header">
+        @if($backLinkUrl)
+        <div class="mb-3 d-flex justify-content-between align-items-center">
+            <a href="{{$backLinkUrl}}">
+                <span><i class="mdi mdi-chevron-left mdi-24px"></i>Voltar</span>
+            </a>
+        </div>
+        @endif
         @if($gridTitle) <h3 class="card-title mb-5">{{ $gridTitle }}</h3> @endif
         @if($errors->any())
             @foreach($errors->all() as $error)

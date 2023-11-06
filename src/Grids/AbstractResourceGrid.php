@@ -33,6 +33,8 @@ abstract class AbstractResourceGrid
 
     protected string $gridTitle = '';
 
+    protected $backLinkUrl;
+
     public function __construct(Model $resource, $parentView, Request $request, $actionsColumn = true)
     {
         $this->resource = $resource;
@@ -67,7 +69,8 @@ abstract class AbstractResourceGrid
             ->with('exportCsv', $this->exportCsv)
             ->with('exportPdf', $this->exportPdf)
             ->with('limit', $this->getLimit())
-            ->with('gridTitle', $this->gridTitle);
+            ->with('gridTitle', $this->gridTitle)
+            ->with('backLinkUrl', $this->backLinkUrl);
     }
 
     public function render(): string
