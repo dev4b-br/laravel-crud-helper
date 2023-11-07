@@ -4,6 +4,7 @@ namespace Dev4b\LaravelCrudHelper;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class LaravelCrudHelperServiceProvider extends ServiceProvider
 {

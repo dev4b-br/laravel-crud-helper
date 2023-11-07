@@ -159,6 +159,7 @@
 @endsection
 
 @section('laravel-crud-helper-scripts')
+    @parent
     <script>
         function confirmDelete(formId) {
             Swal.fire({

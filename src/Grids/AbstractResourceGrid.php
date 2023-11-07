@@ -17,7 +17,7 @@ abstract class AbstractResourceGrid
 
     protected Model $resource;
 
-    private string $parentView;
+    protected string $parentView;
 
     protected string $exportView;
 
@@ -25,7 +25,7 @@ abstract class AbstractResourceGrid
 
     protected array $columns = [];
 
-    private array $filters = [];
+    protected array $filters = [];
 
     protected bool $exportCsv = false;
 
@@ -34,6 +34,8 @@ abstract class AbstractResourceGrid
     protected string $gridTitle = '';
 
     protected $backLinkUrl;
+
+    protected $template = 'laravel-crud-helper::grid';
 
     public function __construct(Model $resource, $parentView, Request $request, $actionsColumn = true)
     {
@@ -61,7 +63,7 @@ abstract class AbstractResourceGrid
         $this->applyFilters($queryBuilder, $this->request);
 
         $data = $queryBuilder->paginate($this->getLimit());
-        return view('laravel-crud-helper::grid')
+        return view($this->template)
             ->with('filters', $this->filters)
             ->with('parentView', $this->parentView)
             ->with('data', $data)
