@@ -35,6 +35,8 @@ abstract class AbstractResourceGrid
 
     protected $backLinkUrl;
 
+    protected $showAddButton = true;
+
     protected $template = 'laravel-crud-helper::grid';
 
     public function __construct(Model $resource, $parentView, Request $request, $actionsColumn = true)
@@ -72,7 +74,8 @@ abstract class AbstractResourceGrid
             ->with('exportPdf', $this->exportPdf)
             ->with('limit', $this->getLimit())
             ->with('gridTitle', $this->gridTitle)
-            ->with('backLinkUrl', $this->backLinkUrl);
+            ->with('backLinkUrl', $this->backLinkUrl)
+            ->with('showAddButton', $this->showAddButton);
     }
 
     public function render(): string

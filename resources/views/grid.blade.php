@@ -70,15 +70,17 @@
                         </div>
                         <div
                             class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
-                            <div class="dt-buttons btn-group flex-wrap">
-                                <a href="{{Request::url()}}/create"
-                                   class="btn btn-label-primary">
+                            @if($showAddButton)
+                                <div class="dt-buttons btn-group flex-wrap">
+                                    <a href="{{Request::url()}}/create"
+                                       class="btn btn-label-primary">
                                     <span>
                                         <i class="mdi mdi-plus me-0 me-sm-1"></i>
                                         <span class="d-none d-sm-inline-block">Adicionar Registro</span>
                                     </span>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                         @if($exportCsv || $exportPdf)
                             <div
