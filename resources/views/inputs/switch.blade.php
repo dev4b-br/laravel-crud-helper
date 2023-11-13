@@ -1,11 +1,13 @@
 <div class="mb-3 {{ implode(' ', $containerClasses) }}" id="{{$id}}-container">
-    @if($label) <div class="text-light small fw-medium">{{ $label }}</div> @endif
+    @if($label)
+        <div class="text-light small fw-medium">{{ $label }}</div>
+    @endif
     <label class="switch">
         <input type="checkbox"
                @if($value) checked @endif
                @if($toggleUrl) onchange="toggleStatus('{{ $toggleUrl }}')" @endif
                class="switch-input @if($errors->get($name)) is-invalid @endif {{ implode(' ', $inputClasses) }}"
-               name="{{ $name }}" id="{{ $id }}" value="1"/>
+               name="{{ $name }}" @if($disabled) disabled @endif id="{{ $id }}" value="1"/>
         <span class="switch-toggle-slider"></span>
     </label>
     @if($hint)
