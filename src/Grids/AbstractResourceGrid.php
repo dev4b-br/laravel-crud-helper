@@ -41,7 +41,7 @@ abstract class AbstractResourceGrid
 
     protected $enabledCreateAction = true;
 
-    protected $enabledUpdateAction = true;
+    protected $enabledEditAction = true;
 
     protected $enabledDeleteAction = true;
 
@@ -51,8 +51,8 @@ abstract class AbstractResourceGrid
         $this->parentView = $parentView;
         $this->request = $request;
         $this->setup();
-        if ($actionsColumn && ($this->enabledUpdateAction || $this->enabledDeleteAction)) {
-            $this->addColumn(new GridColumn('actions', 'Ações', false, $this->getResourceName(), $this->enabledUpdateAction, $this->enabledDeleteAction));
+        if ($actionsColumn && ($this->enabledEditAction || $this->enabledDeleteAction)) {
+            $this->addColumn(new GridColumn('actions', 'Ações', false, $this->getResourceName(), $this->enabledEditAction, $this->enabledDeleteAction));
         }
     }
 
@@ -96,7 +96,7 @@ abstract class AbstractResourceGrid
 
     protected function disableUpdateAction()
     {
-        $this->enabledUpdateAction = false;
+        $this->enabledEditAction = false;
     }
 
     protected function disableDeleteAction()

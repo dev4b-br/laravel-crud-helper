@@ -2,9 +2,6 @@
 
 namespace Dev4b\LaravelCrudHelper\Grids;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-
 class GridColumn
 {
     protected string $name;
@@ -15,17 +12,17 @@ class GridColumn
 
     private $resourceName;
 
-    protected bool $enabledUpdateAction = true;
+    protected bool $enabledEditAction = true;
 
     protected bool $enabledDeleteAction = true;
 
-    public function __construct($name, $head = '', $isSortable = false, $resourceName = null, $enabledUpdateAction = true, $enabledDeleteAction = true)
+    public function __construct($name, $head = '', $isSortable = false, $resourceName = null, $enabledEditAction = true, $enabledDeleteAction = true)
     {
         $this->name = $name;
         $this->isSortable = $isSortable;
         $this->head = $head;
         $this->resourceName = $resourceName;
-        $this->enabledUpdateAction = $enabledUpdateAction;
+        $this->enabledEditAction = $enabledEditAction;
         $this->enabledDeleteAction = $enabledDeleteAction;
     }
 
@@ -34,7 +31,7 @@ class GridColumn
         if ($columnName == 'actions') {
             $view = view('laravel-crud-helper::rowActions');
 
-            if ($this->enabledUpdateAction) {
+            if ($this->enabledEditAction) {
                 $view->with('updateUrl', $this->getUpdateUrl($data));
             }
 
