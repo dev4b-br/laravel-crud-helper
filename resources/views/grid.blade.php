@@ -70,7 +70,7 @@
                         </div>
                         <div
                             class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
-                            @if($showAddButton)
+                            @if($enabledCreateAction)
                                 <div class="dt-buttons btn-group flex-wrap">
                                     <a href="{{Request::url()}}/create"
                                        class="btn btn-label-primary">

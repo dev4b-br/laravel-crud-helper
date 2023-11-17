@@ -81,7 +81,7 @@ abstract class AbstractResourceGrid
             ->with('limit', $this->getLimit())
             ->with('gridTitle', $this->gridTitle)
             ->with('backLinkUrl', $this->backLinkUrl)
-            ->with('showAddButton', $this->showAddButton);
+            ->with('enabledCreateAction', $this->enabledCreateAction);
     }
 
     public function render(): string
