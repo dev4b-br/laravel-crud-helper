@@ -39,14 +39,20 @@ abstract class AbstractResourceGrid
 
     protected $template = 'laravel-crud-helper::grid';
 
+    protected $enabledCreateAction = true;
+
+    protected $enabledUpdateAction = true;
+
+    protected $enabledDeleteAction = true;
+
     public function __construct(Model $resource, $parentView, Request $request, $actionsColumn = true)
     {
         $this->resource = $resource;
         $this->parentView = $parentView;
         $this->request = $request;
         $this->setup();
-        if ($actionsColumn) {
-            $this->addColumn(new GridColumn('actions', 'Ações', false, $this->getResourceName()));
+        if ($actionsColumn && ($this->enabledUpdateAction || $this->enabledDeleteAction)) {
+            $this->addColumn(new GridColumn('actions', 'Ações', false, $this->getResourceName(), $this->enabledUpdateAction, $this->enabledDeleteAction));
         }
     }
 
@@ -81,6 +87,21 @@ abstract class AbstractResourceGrid
     public function render(): string
     {
         return $this->view()->render();
+    }
+
+    protected function disableCreateAction()
+    {
+        $this->enabledCreateAction = false;
+    }
+
+    protected function disableUpdateAction()
+    {
+        $this->enabledUpdateAction = false;
+    }
+
+    protected function disableDeleteAction()
+    {
+        $this->enabledDeleteAction = false;
     }
 
     protected function getResourceName()
