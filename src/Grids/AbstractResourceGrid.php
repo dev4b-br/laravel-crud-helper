@@ -35,8 +35,6 @@ abstract class AbstractResourceGrid
 
     protected $backLinkUrl;
 
-    protected $showAddButton = true;
-
     protected $template = 'laravel-crud-helper::grid';
 
     protected $enabledCreateAction = true;
