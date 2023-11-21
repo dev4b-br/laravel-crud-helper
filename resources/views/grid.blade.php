@@ -2,13 +2,15 @@
 @section('laravel-crud-helper')
     <div class="card-header">
         @if($backLinkUrl)
-        <div class="mb-3 d-flex justify-content-between align-items-center">
-            <a href="{{$backLinkUrl}}">
-                <span><i class="mdi mdi-chevron-left mdi-24px"></i>Voltar</span>
-            </a>
-        </div>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <a href="{{$backLinkUrl}}">
+                    <span><i class="mdi mdi-chevron-left mdi-24px"></i>Voltar</span>
+                </a>
+            </div>
         @endif
-        @if($gridTitle) <h3 class="card-title mb-5">{{ $gridTitle }}</h3> @endif
+        @if($gridTitle)
+            <h3 class="card-title mb-5">{{ $gridTitle }}</h3>
+        @endif
         @if($errors->any())
             @foreach($errors->all() as $error)
                 <div class="alert alert-danger" role="alert">
@@ -70,7 +72,7 @@
                         </div>
                         <div
                             class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
-                            @if($showAddButton)
+                            @if($enabledCreateAction)
                                 <div class="dt-buttons btn-group flex-wrap">
                                     <a href="{{Request::url()}}/create"
                                        class="btn btn-label-primary">

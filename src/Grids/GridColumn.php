@@ -15,20 +15,34 @@ class GridColumn
 
     private $resourceName;
 
-    public function __construct($name, $head = '', $isSortable = false, $resourceName = null)
+    protected bool $enabledUpdateAction = true;
+
+    protected bool $enabledDeleteAction = true;
+
+    public function __construct($name, $head = '', $isSortable = false, $resourceName = null, $enabledUpdateAction = true, $enabledDeleteAction = true)
     {
         $this->name = $name;
         $this->isSortable = $isSortable;
         $this->head = $head;
         $this->resourceName = $resourceName;
+        $this->enabledUpdateAction = $enabledUpdateAction;
+        $this->enabledDeleteAction = $enabledDeleteAction;
     }
 
     public function getData($columnName, $data)
     {
         if ($columnName == 'actions') {
-            return view('laravel-crud-helper::rowActions')
-                ->with('updateUrl', $this->getUpdateUrl($data))
-                ->with('deleteUrl', $this->getDeleteUrl($data));
+            $view = view('laravel-crud-helper::rowActions');
+
+            if ($this->enabledUpdateAction) {
+                $view->with('updateUrl', $this->getUpdateUrl($data));
+            }
+
+            if ($this->enabledDeleteAction) {
+                $view->with('deleteUrl', $this->getDeleteUrl($data));
+            }
+
+            return $view;
         }
 
         return $data[$columnName];
@@ -36,7 +50,7 @@ class GridColumn
 
     public function getSorgingClasses()
     {
-        if (! $this->isSortable) {
+        if (!$this->isSortable) {
             return '';
         }
 
@@ -121,7 +135,7 @@ class GridColumn
 
     private function getDeleteUrl($data)
     {
-       $methodName = 'destroy';
+        $methodName = 'destroy';
 
         return route($this->resourceName . ".{$methodName}", [$data]);
     }
