@@ -102,17 +102,6 @@ abstract class AbstractResourceGrid
         $this->enabledDeleteAction = false;
     }
 
-    protected function enableActionsPermissionCheck($resourceName = null)
-    {
-        if (!$resourceName) {
-            $resourceName = $this->getResourceName();
-        }
-
-        $this->enabledCreateAction = auth()->user()->can($resourceName . '.create');
-        $this->enabledEditAction = auth()->user()->can($resourceName . '.edit');
-        $this->enabledDeleteAction = auth()->user()->can($resourceName . '.delete');
-    }
-
     protected function getResourceName()
     {
         $className = explode('\\', get_class($this->resource));
