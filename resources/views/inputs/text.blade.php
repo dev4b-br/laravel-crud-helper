@@ -27,12 +27,13 @@
         $(document).ready(function () {
             new Cleave("#{{ $id }}", {
                 @if($maskDelimiter) delimiters: ["{!! implode('","', $maskDelimiter) !!}"], @endif
-                    @if($isNumericalOnly && !$maskBlocks)
-                blocks: [100],
-                @else
                 blocks: [{{ implode(',',$maskBlocks) }}],
+                @if($isNumericalOnly)
+                numeral: true,
+                numeralDecimalMark: ',',
+                delimiter: '.',
+                numeralDecimalScale: 2,
                 @endif
-                    @if($isNumericalOnly) numericOnly: true, @endif
                     @if($isUpperCase) uppercase: true, @endif
             });
         })
