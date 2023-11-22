@@ -16,6 +16,8 @@ class TextInput extends AbstractInput
 
     protected bool $isNumericalOnly = false;
 
+    protected bool $isFloat = false;
+
     protected bool $isUpperCase = false;
 
     public function __construct(string $name, ?string $label = null, ?string $value = null, ?string $placeholder = null, ?string $id = null)
@@ -32,6 +34,7 @@ class TextInput extends AbstractInput
             ->with('maskBlocks', $this->maskBlocks)
             ->with('maskDelimiter', $this->maskDelimiter)
             ->with('isNumericalOnly', $this->isNumericalOnly)
+            ->with('isFloat', $this->isFloat)
             ->with('isUpperCase', $this->isUpperCase);
 
         return $view;
@@ -46,8 +49,9 @@ class TextInput extends AbstractInput
         $this->maskDelimiter = $delimiter;
     }
 
-    public function setIsNumericalOnly(bool $isNumericalOnly = true)
+    public function setIsNumericalOnly(bool $isNumericalOnly = true, bool $isFloat = false)
     {
         $this->isNumericalOnly = $isNumericalOnly;
+        $this->isFloat = $isFloat;
     }
 }
