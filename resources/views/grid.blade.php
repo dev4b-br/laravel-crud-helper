@@ -9,7 +9,7 @@
             </div>
         @endif
         @if($gridTitle)
-            <h3 class="card-title mb-5">{{ $gridTitle }}</h3>
+            <h4 class="card-title mb-4">{{ $gridTitle }}</h4>
         @endif
         @if($errors->any())
             @foreach($errors->all() as $error)
