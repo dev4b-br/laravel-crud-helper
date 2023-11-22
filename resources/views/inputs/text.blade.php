@@ -32,7 +32,15 @@
                 @else
                 blocks: [{{ implode(',',$maskBlocks) }}],
                 @endif
-                    @if($isNumericalOnly) numericOnly: true, @endif
+                    @if($isFloat)
+                numeral: true,
+                delimiter: '.',
+                numeralDecimalMark: ',',
+                numeralDecimalScale: 2,
+                @endif
+                    @if($isNumericalOnly && !$isFloat)
+                numericOnly: true,
+                @endif
                     @if($isUpperCase) uppercase: true, @endif
             });
         })
