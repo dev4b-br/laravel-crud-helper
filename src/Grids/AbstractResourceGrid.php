@@ -92,7 +92,7 @@ abstract class AbstractResourceGrid
         $this->enabledCreateAction = false;
     }
 
-    protected function disableUpdateAction()
+    protected function disableEditAction()
     {
         $this->enabledEditAction = false;
     }
