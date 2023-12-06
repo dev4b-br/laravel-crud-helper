@@ -34,8 +34,13 @@ trait HasWidth
         $this->addContainerClass('col-3');
     }
 
-    public function setColsNumber($colsNumber)
+    public function setColsNumber($colsNumber, $ignoreSmallWidth = false)
     {
-        $this->addContainerClass('col-' . $colsNumber);
+        if ($ignoreSmallWidth) {
+            $this->addContainerClass('col-md-' . $colsNumber);
+            return;
+        }
+
+        $this->addContainerClass('col-sm-12 col-md-' . $colsNumber);
     }
 }
