@@ -131,8 +131,12 @@
                     <tbody>
                     @foreach($data as $row)
                         <tr>
-                            @foreach($columns as $column )
-                                <td>{{ $column->getData($column->getName(), $row) }}</td>
+                            @foreach($columns as $column)
+                                    <td>
+                                        <a href="{{ method_exists($gridClass, 'getRowUrl') ? $gridClass->getRowUrl($row) : '#' }}" style="color: inherit">
+                                        {{ $column->getData($column->getName(), $row) }}
+                                        </a>
+                                    </td>
                             @endforeach
                         </tr>
                     @endforeach
