@@ -79,6 +79,7 @@ abstract class AbstractResourceGrid
             ->with('limit', $this->getLimit())
             ->with('gridTitle', $this->gridTitle)
             ->with('backLinkUrl', $this->backLinkUrl)
+            ->with('gridClass', $this)
             ->with('enabledCreateAction', $this->enabledCreateAction);
     }
 
@@ -106,6 +107,11 @@ abstract class AbstractResourceGrid
     {
         $className = explode('\\', get_class($this->resource));
         return Str::plural(Str::lower(end($className)));
+    }
+
+    public function getRowUrl($row)
+    {
+
     }
 
     /**

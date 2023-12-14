@@ -130,9 +130,11 @@
                     </thead>
                     <tbody>
                     @foreach($data as $row)
-                        <tr>
-                            @foreach($columns as $column )
-                                <td>{{ $column->getData($column->getName(), $row) }}</td>
+                        <tr @if($gridClass->getRowUrl($row)) onclick="window.location='{{ $gridClass->getRowUrl($row)}}'" style="cursor: pointer;"@endif>
+                            @foreach($columns as $column)
+                                    <td>
+                                        {{ $column->getData($column->getName(), $row) }}
+                                    </td>
                             @endforeach
                         </tr>
                     @endforeach
