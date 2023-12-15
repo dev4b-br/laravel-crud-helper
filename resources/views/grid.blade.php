@@ -116,7 +116,16 @@
                         @endif
                     </div>
                 </div>
-                <table class="table table-striped dataTable">
+                @php
+                    $tableHasClickableRows = false;
+                    foreach ($data as $row) {
+                        if ($gridClass->getRowUrl($row)) {
+                            $tableHasClickableRows = true;
+                            break;
+                        }
+                    }
+                @endphp
+                <table class="table @if($tableHasClickableRows) table-hover @endif table-striped dataTable">
                     <thead>
                     <tr>
                         @foreach($columns as $column)
