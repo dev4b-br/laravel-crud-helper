@@ -139,11 +139,12 @@
                     </thead>
                     <tbody>
                     @foreach($data as $row)
-                        <tr @if($gridClass->getRowUrl($row)) onclick="window.location='{{ $gridClass->getRowUrl($row)}}'" style="cursor: pointer;"@endif>
+                        <tr>
                             @foreach($columns as $column)
-                                    <td>
-                                        {{ $column->getData($column->getName(), $row) }}
-                                    </td>
+                                <td @if($column->getName() != 'actions' && $gridClass->getRowUrl($row)) onclick="window.location='{{ $gridClass->getRowUrl($row)}}'"
+                                    style="cursor: pointer;"@endif>
+                                    {{ $column->getData($column->getName(), $row) }}
+                                </td>
                             @endforeach
                         </tr>
                     @endforeach
