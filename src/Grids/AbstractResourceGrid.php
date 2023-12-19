@@ -43,6 +43,8 @@ abstract class AbstractResourceGrid
 
     protected $enabledDeleteAction = true;
 
+    protected $breadcrumbs = '';
+
     public function __construct(Model $resource, $parentView, Request $request, $actionsColumn = true)
     {
         $this->resource = $resource;
@@ -70,6 +72,7 @@ abstract class AbstractResourceGrid
 
         $data = $queryBuilder->paginate($this->getLimit());
         return view($this->template)
+            ->with('breadcrumbs', $this->breadcrumbs)
             ->with('filters', $this->filters)
             ->with('parentView', $this->parentView)
             ->with('data', $data)

@@ -1,6 +1,9 @@
 @extends($parentView)
 @section('laravel-crud-helper')
     <div class="card-header">
+        @if($breadcrumbs)
+             {!! $breadcrumbs !!}
+        @endif
         @if($backLinkUrl)
             <div class="mb-3 d-flex justify-content-between align-items-center">
                 <a href="{{$backLinkUrl}}">

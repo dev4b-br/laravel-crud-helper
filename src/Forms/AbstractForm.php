@@ -34,6 +34,8 @@ abstract class AbstractForm
 
     protected bool $renderSubmitButton = true;
 
+    protected $breadcrumbs = '';
+
     public function __construct(?string $parentView = null)
     {
         $this->parentView = $parentView;
@@ -50,6 +52,7 @@ abstract class AbstractForm
             $view = 'laravel-crud-helper::form-standalone';
         }
         return view($view)
+            ->with('breadcrumbs', $this->breadcrumbs)
             ->with('parentView', $this->parentView)
             ->with('inputs', $this->inputs)
             ->with('action', $this->getAction())
