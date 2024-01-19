@@ -45,6 +45,16 @@ trait ResourceFormController
     {
         $form = $this->getForm($request);
         $form->execute($request);
+
+        if ($form->isAjax) {
+            \Session::flash('message', $this->getUpdatedMessage());
+
+            return response()->json([
+                'success' => true,
+                'message' => $this->getUpdatedMessage(),
+                'redirect' => $form->getRedirectRoute(),
+            ]);
+        }
         return redirect($form->getRedirectRoute())->with('message', $this->getUpdatedMessage());
     }
 
