@@ -74,7 +74,13 @@
                         handleChangeFieldCallback(['{!! implode("','", $inputWithRefreshList->getRefreshList()) !!}'])
                     });
                     @endforeach
-                    @endif
+                        @endif
+
+                    if ($('.select2')) {
+                        $('.select2').select2({
+                            'language': 'pt-BR',
+                        });
+                    }
                 },
             });
         }
