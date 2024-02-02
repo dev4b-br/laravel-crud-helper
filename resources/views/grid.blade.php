@@ -2,7 +2,7 @@
 @section('laravel-crud-helper')
     <div class="card-header">
         @if($breadcrumbs)
-             {!! $breadcrumbs !!}
+            {!! $breadcrumbs !!}
         @endif
         @if($backLinkUrl)
             <div class="mb-3 d-flex justify-content-between align-items-center">
@@ -146,7 +146,7 @@
                             @foreach($columns as $column)
                                 <td @if($column->getName() != 'actions' && $gridClass->getRowUrl($row)) onclick="window.location='{{ $gridClass->getRowUrl($row)}}'"
                                     style="cursor: pointer;"@endif>
-                                    {{ $column->getData($column->getName(), $row) }}
+                                    {!! $column->getData($column->getName(), $row) !!}
                                 </td>
                             @endforeach
                         </tr>
