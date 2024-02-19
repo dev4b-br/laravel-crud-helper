@@ -33,9 +33,9 @@ abstract class AbstractResourceGrid
 
     protected string $gridTitle = '';
 
-    protected string $buttonTitle;
+    protected string $buttonTitle = '';
 
-    protected string $modalRoute;
+    protected string $modalRoute = '';
 
     protected $backLinkUrl;
 
