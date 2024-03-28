@@ -93,10 +93,10 @@
                                 <div class="dt-buttons btn-group flex-wrap">
                                     <button class="btn btn-label-warning dropdown-toggle" id="dropdownExportButton"
                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span>
-                                        <i class="mdi mdi-table-arrow-right me-0 me-sm-1"></i>
-                                        <span class="d-none d-sm-inline-block">Exportar</span>
-                                    </span>
+                                            <span>
+                                                <i class="mdi mdi-table-arrow-right me-0 me-sm-1"></i>
+                                                <span class="d-none d-sm-inline-block">Exportar</span>
+                                            </span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownExportButton">
                                         @if($exportCsv)
@@ -114,6 +114,20 @@
                                             </li>
                                         @endif
                                     </ul>
+                                </div>
+                            </div>
+                        @endif
+                        @if($enabledModalButton)
+                            <div
+                                class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                                <div class="dt-buttons btn-group flex-wrap">
+                                    <button class="btn btn-label-warning" id="modalButton"
+                                            aria-haspopup="true" aria-expanded="false"
+                                            onclick="openModal()">
+                                        <span>
+                                            <span class="d-none d-sm-inline-block">{{ $buttonTitle }}</span>
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                         @endif
@@ -180,6 +194,20 @@
 @section('laravel-crud-helper-scripts')
     @parent
     <script>
+        function openModal() {
+            $.ajax({
+                url: '{{ $modalRoute }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    $('#defaultModalContent').html(response);
+                    openDefaultModal();
+                }
+            });
+        }
+
         function confirmDelete(formId) {
             Swal.fire({
                 title: "Remover registro?",

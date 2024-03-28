@@ -33,9 +33,15 @@ abstract class AbstractResourceGrid
 
     protected string $gridTitle = '';
 
+    protected string $buttonTitle = '';
+
+    protected string $modalRoute = '';
+
     protected $backLinkUrl;
 
     protected $template = 'laravel-crud-helper::grid';
+
+    protected bool $enabledModalButton = false;
 
     protected $enabledCreateAction = true;
 
@@ -79,6 +85,9 @@ abstract class AbstractResourceGrid
             ->with('columns', $this->columns)
             ->with('exportCsv', $this->exportCsv)
             ->with('exportPdf', $this->exportPdf)
+            ->with('enabledModalButton', $this->enabledModalButton)
+            ->with('buttonTitle', $this->buttonTitle)
+            ->with('modalRoute', $this->modalRoute)
             ->with('limit', $this->getLimit())
             ->with('gridTitle', $this->gridTitle)
             ->with('backLinkUrl', $this->backLinkUrl)
@@ -153,6 +162,13 @@ abstract class AbstractResourceGrid
     public function enableExportPdf(): void
     {
         $this->exportPdf = true;
+    }
+
+    public function enableModalButton(string $buttonTitle, string $modalRoute): void
+    {
+        $this->enabledModalButton = true;
+        $this->buttonTitle = $buttonTitle;
+        $this->modalRoute = $modalRoute;
     }
 
     public function setExportView(string $exportView): void
