@@ -117,6 +117,19 @@
                                 </div>
                             </div>
                         @endif
+                        @if($enabledDefaultButton)
+                            <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                                <div class="dt-buttons btn-group flex-wrap">
+                                    <a class="btn btn-label-warning" id="defaultButton"
+                                            aria-haspopup="true" aria-expanded="false"
+                                            href={{ route($defaultButtonRoute) }}>
+                                        <span>
+                                            <span class="d-none d-sm-inline-block">{{ $defaultButtonTitle }}</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
                         @if($enabledModalButton)
                             <div
                                 class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
