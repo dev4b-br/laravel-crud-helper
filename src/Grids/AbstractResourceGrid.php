@@ -33,7 +33,7 @@ abstract class AbstractResourceGrid
 
     protected string $gridTitle = '';
 
-    protected string $buttonTitle = '';
+    protected string $modalButtonTitle = '';
 
     protected string $modalRoute = '';
 
@@ -86,7 +86,7 @@ abstract class AbstractResourceGrid
             ->with('exportCsv', $this->exportCsv)
             ->with('exportPdf', $this->exportPdf)
             ->with('enabledModalButton', $this->enabledModalButton)
-            ->with('buttonTitle', $this->buttonTitle)
+            ->with('modalButtonTitle', $this->modalButtonTitle)
             ->with('modalRoute', $this->modalRoute)
             ->with('limit', $this->getLimit())
             ->with('gridTitle', $this->gridTitle)
@@ -164,10 +164,10 @@ abstract class AbstractResourceGrid
         $this->exportPdf = true;
     }
 
-    public function enableModalButton(string $buttonTitle, string $modalRoute): void
+    public function enableModalButton(string $modalButtonTitle, string $modalRoute): void
     {
         $this->enabledModalButton = true;
-        $this->buttonTitle = $buttonTitle;
+        $this->modalButtonTitle = $modalButtonTitle;
         $this->modalRoute = $modalRoute;
     }
 

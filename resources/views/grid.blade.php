@@ -125,7 +125,7 @@
                                             aria-haspopup="true" aria-expanded="false"
                                             onclick="openModal()">
                                         <span>
-                                            <span class="d-none d-sm-inline-block">{{ $buttonTitle }}</span>
+                                            <span class="d-none d-sm-inline-block">{{ $modalButtonTitle }}</span>
                                         </span>
                                     </button>
                                 </div>
