@@ -123,14 +123,14 @@ class GridColumn
         $this->head = $head;
     }
 
-    private function getUpdateUrl($data)
+    protected function getUpdateUrl($data)
     {
         $methodName = 'edit';
 
         return route($this->resourceName . ".{$methodName}", [$data]);
     }
 
-    private function getDeleteUrl($data)
+    protected function getDeleteUrl($data)
     {
         $methodName = 'destroy';
 
