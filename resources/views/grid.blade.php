@@ -60,7 +60,7 @@
                     </form>
                     <div class="col-md-10 d-flex align-items-center justify-content-end gap-2">
                         <div
-                            class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                                class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                             <div class="dt-buttons btn-group flex-wrap">
                                 @if($filters)
                                     <button onclick="submitHandler('{{Request::url()}}', 'GET', false)"
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div
-                            class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                                class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                             @if($enabledCreateAction)
                                 <div class="dt-buttons btn-group flex-wrap">
                                     <a href="{{Request::url()}}/create"
@@ -89,7 +89,7 @@
                         </div>
                         @if($exportCsv || $exportPdf)
                             <div
-                                class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                                    class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                                 <div class="dt-buttons btn-group flex-wrap">
                                     <button class="btn btn-label-warning dropdown-toggle" id="dropdownExportButton"
                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -121,8 +121,8 @@
                             <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                                 <div class="dt-buttons btn-group flex-wrap">
                                     <a class="btn btn-label-warning" id="defaultButton"
-                                            aria-haspopup="true" aria-expanded="false"
-                                            href={{ route($defaultButtonRoute) }}>
+                                       aria-haspopup="true" aria-expanded="false"
+                                       href={{ route($defaultButtonRoute) }}>
                                         <span>
                                             <span class="d-none d-sm-inline-block">{{ $defaultButtonTitle }}</span>
                                         </span>
@@ -132,7 +132,7 @@
                         @endif
                         @if($enabledModalButton)
                             <div
-                                class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                                    class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                                 <div class="dt-buttons btn-group flex-wrap">
                                     <button class="btn btn-label-warning" id="modalButton"
                                             aria-haspopup="true" aria-expanded="false"
@@ -162,7 +162,7 @@
                             <th @if($column->isSortable())
                                     class="{{ $column->getSorgingClasses() }}"
                                 onclick="window.location = '{{ $column->getSortUrl() }}'"
-                                @endif
+                                    @endif
                             >{{ $column->getHead() }}</th>
                         @endforeach
                     </tr>

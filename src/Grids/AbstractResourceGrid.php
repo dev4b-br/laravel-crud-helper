@@ -33,9 +33,9 @@ abstract class AbstractResourceGrid
 
     protected string $gridTitle = '';
 
-	protected string $defaultButtonTitle = '';
+    protected string $defaultButtonTitle = '';
 
-	protected string $defaultButtonRoute = '';
+    protected string $defaultButtonRoute = '';
 
     protected string $modalButtonTitle = '';
 
@@ -45,7 +45,7 @@ abstract class AbstractResourceGrid
 
     protected $template = 'laravel-crud-helper::grid';
 
-	protected bool $enabledDefaultButton = false;
+    protected bool $enabledDefaultButton = false;
 
     protected bool $enabledModalButton = false;
 
@@ -91,9 +91,9 @@ abstract class AbstractResourceGrid
             ->with('columns', $this->columns)
             ->with('exportCsv', $this->exportCsv)
             ->with('exportPdf', $this->exportPdf)
-			->with('enabledDefaultButton', $this->enabledDefaultButton)
-			->with('defaultButtonTitle', $this->defaultButtonTitle)
-			->with('defaultButtonRoute', $this->defaultButtonRoute)
+            ->with('enabledDefaultButton', $this->enabledDefaultButton)
+            ->with('defaultButtonTitle', $this->defaultButtonTitle)
+            ->with('defaultButtonRoute', $this->defaultButtonRoute)
             ->with('enabledModalButton', $this->enabledModalButton)
             ->with('modalButtonTitle', $this->modalButtonTitle)
             ->with('modalRoute', $this->modalRoute)
@@ -173,12 +173,12 @@ abstract class AbstractResourceGrid
         $this->exportPdf = true;
     }
 
-	public function enableDefaultButton(string $defaultButtonTitle, string $defaultButtonRoute): void
-	{
-		$this->enabledDefaultButton = true;
-		$this->defaultButtonTitle = $defaultButtonTitle;
-		$this->defaultButtonRoute = $defaultButtonRoute;
-	}
+    public function enableDefaultButton(string $defaultButtonTitle, string $defaultButtonRoute): void
+    {
+        $this->enabledDefaultButton = true;
+        $this->defaultButtonTitle = $defaultButtonTitle;
+        $this->defaultButtonRoute = $defaultButtonRoute;
+    }
 
     public function enableModalButton(string $modalButtonTitle, string $modalRoute): void
     {
