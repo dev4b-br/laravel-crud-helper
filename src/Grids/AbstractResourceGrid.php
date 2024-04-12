@@ -33,13 +33,19 @@ abstract class AbstractResourceGrid
 
     protected string $gridTitle = '';
 
-    protected string $buttonTitle = '';
+    protected string $defaultButtonTitle = '';
+
+    protected string $defaultButtonRoute = '';
+
+    protected string $modalButtonTitle = '';
 
     protected string $modalRoute = '';
 
     protected $backLinkUrl;
 
     protected $template = 'laravel-crud-helper::grid';
+
+    protected bool $enabledDefaultButton = false;
 
     protected bool $enabledModalButton = false;
 
@@ -85,8 +91,11 @@ abstract class AbstractResourceGrid
             ->with('columns', $this->columns)
             ->with('exportCsv', $this->exportCsv)
             ->with('exportPdf', $this->exportPdf)
+            ->with('enabledDefaultButton', $this->enabledDefaultButton)
+            ->with('defaultButtonTitle', $this->defaultButtonTitle)
+            ->with('defaultButtonRoute', $this->defaultButtonRoute)
             ->with('enabledModalButton', $this->enabledModalButton)
-            ->with('buttonTitle', $this->buttonTitle)
+            ->with('modalButtonTitle', $this->modalButtonTitle)
             ->with('modalRoute', $this->modalRoute)
             ->with('limit', $this->getLimit())
             ->with('gridTitle', $this->gridTitle)
@@ -164,10 +173,17 @@ abstract class AbstractResourceGrid
         $this->exportPdf = true;
     }
 
-    public function enableModalButton(string $buttonTitle, string $modalRoute): void
+    public function enableDefaultButton(string $defaultButtonTitle, string $defaultButtonRoute): void
+    {
+        $this->enabledDefaultButton = true;
+        $this->defaultButtonTitle = $defaultButtonTitle;
+        $this->defaultButtonRoute = $defaultButtonRoute;
+    }
+
+    public function enableModalButton(string $modalButtonTitle, string $modalRoute): void
     {
         $this->enabledModalButton = true;
-        $this->buttonTitle = $buttonTitle;
+        $this->modalButtonTitle = $modalButtonTitle;
         $this->modalRoute = $modalRoute;
     }
 
